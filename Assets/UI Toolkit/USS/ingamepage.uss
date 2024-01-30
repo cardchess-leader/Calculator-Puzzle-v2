@@ -1,0 +1,158 @@
+.star-container {
+}
+
+.star-container > VisualElement {
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    -unity-background-image-tint-color: rgb(255, 252, 0);
+}
+
+.log-number {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(154, 255, 0);
+    border-right-color: rgb(154, 255, 0);
+    border-top-color: rgb(154, 255, 0);
+    border-bottom-color: rgb(154, 255, 0);
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    width: 126px;
+    height: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+.log-number Label {
+    font-size: 70px;
+    color: rgb(0, 255, 0);
+}
+
+.log-symbol Label {
+    font-size: 70px;
+    color: rgb(255, 140, 0);
+    align-self: center;
+    justify-content: flex-start;
+}
+
+.log-symbol {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(255, 185, 0);
+    border-right-color: rgb(255, 185, 0);
+    border-top-color: rgb(255, 185, 0);
+    border-bottom-color: rgb(255, 185, 0);
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    width: 126px;
+    height: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    align-items: stretch;
+    justify-content: center;
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+.log-symbol VisualElement.small {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Images/Arithmetic/divide%20corner%20white.png?fileID=2800000&guid=6a2fd4235a17ffe47a48d7591f19d059&type=3#divide corner white');
+    -unity-background-image-tint-color: rgb(255, 146, 0);
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.log-symbol VisualElement.large {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Images/Arithmetic/divide%20corner%20white.png?fileID=2800000&guid=6a2fd4235a17ffe47a48d7591f19d059&type=3#divide corner white');
+    -unity-background-image-tint-color: rgb(255, 146, 0);
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.LogContainer {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    width: 760px;
+    border-left-color: rgba(255, 255, 255, 0.5);
+    border-right-color: rgba(255, 255, 255, 0.5);
+    border-top-color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    height: 210px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-right: 25px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex-shrink: 0;
+}
+
+.hint {
+    opacity: 0.5;
+}
+
+#Hint {
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100px;
+    height: 100px;
+    background-image: url('project://database/Assets/Images/light-bulb(1).png?fileID=2800000&guid=a96e6c4f31c1f2d42a9d7d02df4f8c58&type=3#light-bulb(1)');
+    margin-left: 25px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.basicLevel #LevelTitle {
+    color: rgb(64, 255, 0);
+}
+
+.hardLevel #LevelTitle {
+    color: rgb(255, 0, 0);
+}
+
+.dailyLevel #LevelTitle {
+    color: rgb(0, 255, 255);
+}
+
+#LevelTitle {
+    color: rgb(64, 255, 0);
+}

@@ -1,0 +1,52 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/calculator.uss?fileID=7433441132597879392&amp;guid=dcef0f599e824ee4dabf9f2a0127b7f9&amp;type=3#calculator" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/general.uss?fileID=7433441132597879392&amp;guid=1fa9dea595f7dff4ab08522d8168c051&amp;type=3#general" />
+    <ui:VisualElement name="Calculator" class="calc-macaron" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 1220px; flex-shrink: 0; justify-content: center; align-items: center;">
+        <ui:VisualElement name="CalculatorBody" style="flex-grow: 0; background-color: rgb(255, 252, 233); border-left-color: rgb(207, 165, 124); border-right-color: rgb(207, 165, 124); border-top-color: rgb(207, 165, 124); border-bottom-color: rgb(207, 165, 124); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; border-top-left-radius: 50px; border-bottom-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px;">
+            <ui:VisualElement name="Screen" style="flex-grow: 0; background-color: rgb(255, 255, 255); width: 1000px; height: 200px; flex-shrink: 0; border-left-color: rgb(207, 165, 124); border-right-color: rgb(207, 165, 124); border-top-color: rgb(207, 165, 124); border-bottom-color: rgb(207, 165, 124); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; margin-bottom: 30px; justify-content: space-between; border-top-left-radius: 50px; border-bottom-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; flex-direction: row; align-items: center;">
+                <ui:VisualElement name="Oper" style="flex-grow: 0; width: 100px; height: 100px; display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 20px;">
+                    <ui:VisualElement name="Multiply_1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: auto; height: auto; background-image: url(&apos;project://database/Assets/Images/Arithmetic/multiply%20corner%20white.png?fileID=2800000&amp;guid=9a3953e5108241343b3aa03ed7a83a38&amp;type=3#multiply corner white&apos;); -unity-background-image-tint-color: rgb(207, 165, 124); margin-left: 22px; margin-right: 22px; margin-top: 22px; margin-bottom: 22px; -unity-background-scale-mode: scale-to-fit; align-self: stretch; display: none;" />
+                    <ui:VisualElement name="Divide_1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: auto; height: auto; background-image: url(&apos;project://database/Assets/Images/Arithmetic/divide%20corner%20white.png?fileID=2800000&amp;guid=6a2fd4235a17ffe47a48d7591f19d059&amp;type=3#divide corner white&apos;); -unity-background-image-tint-color: rgb(207, 165, 124); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; -unity-background-scale-mode: scale-to-fit; align-self: stretch; display: none;" />
+                    <ui:Label tabindex="-1" text="-" display-tooltip-when-elided="true" name="Minus_1" style="display: none; color: rgb(207, 165, 124); font-size: 110px; -unity-text-align: middle-center;" />
+                    <ui:Label tabindex="-1" text="+" display-tooltip-when-elided="true" name="Plus_1" style="display: none; color: rgb(207, 165, 124); font-size: 110px; -unity-text-align: middle-center;" />
+                    <ui:Label tabindex="-1" text="^" display-tooltip-when-elided="true" name="Pow_1" style="display: none; color: rgb(207, 165, 124); font-size: 110px; -unity-text-align: middle-center;" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="12345" display-tooltip-when-elided="true" name="ScreenLabel" style="color: rgb(207, 165, 124); font-size: 100px; -unity-font-style: normal; -unity-text-align: upper-right; margin-right: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ButtonGroupRow" class="row3" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:Button text="7" display-tooltip-when-elided="true" name="Seven" class="button" style="display: flex; visibility: visible; overflow: hidden;" />
+                <ui:Button text="8" display-tooltip-when-elided="true" name="Eight" class="button" />
+                <ui:Button text="9" display-tooltip-when-elided="true" name="Nine" class="button" />
+                <ui:Button display-tooltip-when-elided="true" name="Divide" class="button">
+                    <ui:VisualElement picking-mode="Ignore" name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/Arithmetic/divide%20corner%20white.png?fileID=2800000&amp;guid=6a2fd4235a17ffe47a48d7591f19d059&amp;type=3#divide corner white&apos;); width: 50px; height: 50px; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                </ui:Button>
+                <ui:Button text="AC" display-tooltip-when-elided="true" name="AC" class="button" style="-unity-font-style: normal;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ButtonGroupRow" class="row2" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:Button text="4" display-tooltip-when-elided="true" name="Four" class="button" />
+                <ui:Button text="5" display-tooltip-when-elided="true" name="Five" class="button" />
+                <ui:Button text="6" display-tooltip-when-elided="true" name="Six" class="button" />
+                <ui:Button display-tooltip-when-elided="true" name="Multiply" class="button">
+                    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 40px; height: 40px; background-image: url(&apos;project://database/Assets/Images/Arithmetic/multiply%20corner%20white.png?fileID=2800000&amp;guid=9a3953e5108241343b3aa03ed7a83a38&amp;type=3#multiply corner white&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="true" name="Root" class="button">
+                    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 55px; height: 55px; background-image: url(&apos;project://database/Assets/Images/Arithmetic/square%20root%20corner%20white.png?fileID=2800000&amp;guid=1261b93a447e1114ea1958affd8371a8&amp;type=3#square root corner white&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="ButtonGroupRow" class="row1" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:Button text="1" display-tooltip-when-elided="true" name="One" class="button" />
+                <ui:Button text="2" display-tooltip-when-elided="true" name="Two" class="button" />
+                <ui:Button text="3" display-tooltip-when-elided="true" name="Three" class="button" />
+                <ui:Button text="-" display-tooltip-when-elided="true" name="Minus" class="button" style="font-size: 80px;" />
+                <ui:Button text="%" display-tooltip-when-elided="true" name="Percent" class="button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ButtonGroupRow" class="row0" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:Button text="0" display-tooltip-when-elided="true" name="Zero" class="button" />
+                <ui:Button text="00" display-tooltip-when-elided="true" name="ZeroZero" class="button" />
+                <ui:Button text="." display-tooltip-when-elided="true" name="Dot" class="button" />
+                <ui:Button text="+" display-tooltip-when-elided="true" name="Plus" class="button" style="font-size: 80px;" />
+                <ui:Button text="=" display-tooltip-when-elided="true" name="Equal" class="button" style="font-size: 80px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

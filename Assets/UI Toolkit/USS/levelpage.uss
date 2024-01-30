@@ -1,0 +1,81 @@
+#Cell {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#CellRow {
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.SnapTarget {
+}
+
+.QuestionRow {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.cell {
+    flex-grow: 0;
+    background-color: rgb(165, 165, 165);
+    flex-basis: auto;
+    width: 190px;
+    height: 190px;
+    align-items: center;
+    justify-content: center;
+    align-self: auto;
+    font-size: 60px;
+    -unity-font-style: bold;
+    flex-direction: row;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.cell > VisualElement {
+    -unity-background-image-tint-color: rgb(0, 0, 0);
+}
+
+.cell > .star {
+    width: 42px;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    background-image: url('project://database/Assets/Images/Full%20Star.png?fileID=2800000&guid=84401bff0dcf05148bbb5a31d569df0e&type=3#Full Star');
+    -unity-background-scale-mode: scale-to-fit;
+    height: 42%;
+}
+
+.cell.color {
+    color: rgb(255, 255, 255);
+}
+
+.cell.color > VisualElement {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.cell.orange {
+    background-color: rgb(254, 160, 10);
+}
+
+.cell.green {
+    background-color: rgb(116, 254, 10);
+}
+
+.cell.red {
+    background-color: rgb(254, 10, 91);
+}

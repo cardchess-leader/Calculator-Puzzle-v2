@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/ingamepage.uss?fileID=7433441132597879392&amp;guid=f3dfb523655147f45956cb2d38b19516&amp;type=3#ingamepage" />
+    <ui:VisualElement name="VisualElement" class="log-symbol" style="align-items: stretch;">
+        <ui:VisualElement class="log-symbol2 small" style="background-image: url(&apos;project://database/Assets/Images/Arithmetic/square%20root%20corner%20white.png?fileID=2800000&amp;guid=1261b93a447e1114ea1958affd8371a8&amp;type=3#square root corner white&apos;);" />
+    </ui:VisualElement>
+</ui:UXML>

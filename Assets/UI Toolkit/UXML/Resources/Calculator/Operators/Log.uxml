@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/calculator.uss?fileID=7433441132597879392&amp;guid=dcef0f599e824ee4dabf9f2a0127b7f9&amp;type=3#calculator" />
+    <ui:Button text="log" display-tooltip-when-elided="true" name="Log" class="symbol yellow" />
+</ui:UXML>

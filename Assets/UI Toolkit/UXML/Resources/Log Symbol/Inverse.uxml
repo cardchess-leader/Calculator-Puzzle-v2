@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/ingamepage.uss?fileID=7433441132597879392&amp;guid=f3dfb523655147f45956cb2d38b19516&amp;type=3#ingamepage" />
+    <ui:VisualElement name="VisualElement" class="log-symbol" style="align-items: center; flex-direction: row; align-self: auto;">
+        <ui:Label tabindex="-1" text="1/x" display-tooltip-when-elided="true" style="justify-content: center; align-self: center; align-items: center; font-size: 55px; -unity-text-align: upper-left;" />
+    </ui:VisualElement>
+</ui:UXML>

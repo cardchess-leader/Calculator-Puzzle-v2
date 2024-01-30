@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/ingamepage.uss?fileID=7433441132597879392&amp;guid=f3dfb523655147f45956cb2d38b19516&amp;type=3#ingamepage" />
+    <ui:VisualElement name="StarContainer" class="star-container" style="flex-grow: 0.5; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; align-items: center;">
+        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/Full%20Star.png?fileID=2800000&amp;guid=84401bff0dcf05148bbb5a31d569df0e&amp;type=3#Full Star&apos;);" />
+        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/Empty%20Star.png?fileID=2800000&amp;guid=dc98b95519771284c96e2d070582308c&amp;type=3#Empty Star&apos;);" />
+        <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/Empty%20Star.png?fileID=2800000&amp;guid=dc98b95519771284c96e2d070582308c&amp;type=3#Empty Star&apos;);" />
+    </ui:VisualElement>
+</ui:UXML>

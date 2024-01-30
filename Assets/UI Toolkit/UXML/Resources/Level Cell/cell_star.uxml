@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/levelpage.uss?fileID=7433441132597879392&amp;guid=13ed3ba76e75dfb459045de9558b7eee&amp;type=3#levelpage" />
+    <ui:Button display-tooltip-when-elided="true" name="Cell" class="cell">
+        <ui:VisualElement picking-mode="Ignore" name="Star1" class="star" />
+        <ui:VisualElement picking-mode="Ignore" name="Star2" class="star" />
+        <ui:VisualElement picking-mode="Ignore" name="Star3" class="star" />
+    </ui:Button>
+</ui:UXML>

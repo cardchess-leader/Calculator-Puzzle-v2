@@ -1,0 +1,72 @@
+.mainpage-btn-label {
+    color: rgb(255, 255, 255);
+    -unity-font: initial;
+    font-size: 90px;
+}
+
+.play-button {
+    flex-grow: 1;
+    background-color: rgb(51, 51, 51);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    flex-direction: column;
+    flex-basis: 0;
+    justify-content: center;
+    align-items: center;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    font-size: 90px;
+    color: rgb(255, 255, 255);
+}
+
+.no-ads-btn {
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    background-image: none;
+    background-color: rgba(188, 188, 188, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.rating-btn {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Images/Small%20Round%20Star.png?fileID=2800000&guid=d46240ff8dac502478956c41ae2303b5&type=3#Small Round Star');
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.settings-btn {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/Images/Settings.png?fileID=2800000&guid=711ed8521c3146e44933ff220b69c41a&type=3#Settings');
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}

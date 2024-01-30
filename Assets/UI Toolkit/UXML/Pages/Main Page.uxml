@@ -1,0 +1,83 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/mainpage.uss?fileID=7433441132597879392&amp;guid=6850b20d2986b3e4c81107b9cd6fca4f&amp;type=3#mainpage" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/general.uss?fileID=7433441132597879392&amp;guid=1fa9dea595f7dff4ab08522d8168c051&amp;type=3#general" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-color: rgb(0, 0, 0); width: 100%; height: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; min-height: auto; min-width: auto; flex-basis: auto; transition-property: opacity; transition-duration: 0.5s;">
+        <ui:VisualElement name="TopPanel" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 1000px; margin-left: auto; margin-right: auto;">
+                <ui:Label tabindex="-1" text="CALCULATOR&#10;PUZZLE" display-tooltip-when-elided="true" name="TItle" style="-unity-font: url(&apos;project://database/Assets/Fonts/digital-7%20(mono%20italic).ttf?fileID=12800000&amp;guid=086762e486b65334493ce294d6de8155&amp;type=3#digital-7 (mono italic)&apos;); -unity-font-style: normal; color: rgb(255, 255, 255); font-size: 212px; -unity-font-definition: initial; position: absolute; left: auto; right: auto; bottom: auto; top: 200px; -unity-paragraph-spacing: 30px; -unity-text-align: upper-right;" />
+                <ui:Label tabindex="-1" text="score: 0" display-tooltip-when-elided="true" name="Score" style="-unity-font: url(&apos;project://database/Assets/Fonts/digital-7.ttf?fileID=12800000&amp;guid=16c82fdb85f964b43b941b95c39bc966&amp;type=3#digital-7&apos;); -unity-font-style: normal; color: rgb(64, 255, 0); font-size: 134px; -unity-font-definition: initial; position: absolute; left: auto; right: 35px; bottom: 80px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BarContainer" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="Bar" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0.25); height: 1px; margin-left: 50px; margin-right: 50px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="BottomPanel" style="flex-grow: 3; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 1000px; height: 1000px; margin-left: auto; margin-right: auto; margin-top: 100px; justify-content: space-between; flex-direction: row;">
+                <ui:VisualElement name="VisualElement" style="flex-grow: 3; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                    <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(165, 165, 165); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
+                                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: none; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0;">
+                                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/play.png?fileID=2800000&amp;guid=8de7701d32d75bc41a23933e5ad5e712&amp;type=3#play&apos;); margin-left: 60px; margin-right: 60px; margin-top: 60px; margin-bottom: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-direction: column; flex-basis: 0;">
+                            <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayBtn" class="play-button" style="font-size: 90px; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(165, 165, 165); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
+                                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/Calendar.png?fileID=2800000&amp;guid=269b421b22e4a374ab55aca4e3a0b07c&amp;type=3#Calendar&apos;); margin-left: 50px; margin-right: 50px; margin-top: 50px; margin-bottom: 50px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                            <ui:Button text="Daily" display-tooltip-when-elided="true" name="DailyBtn" class="play-button" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(165, 165, 165); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
+                                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/trophy.png?fileID=2800000&amp;guid=fb655ba7ecd0dde4db881266c34e74ea&amp;type=3#trophy&apos;); margin-left: 50px; margin-right: 50px; margin-top: 50px; margin-bottom: 50px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                            <ui:Button text="Rank" display-tooltip-when-elided="true" name="RankBtn" class="play-button" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(165, 165, 165); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
+                                <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/Shop.png?fileID=2800000&amp;guid=6c091b289d1963b469acc280e37eb38a&amp;type=3#Shop&apos;); margin-left: 50px; margin-right: 50px; margin-top: 50px; margin-bottom: 50px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <ui:Button text="Shop" display-tooltip-when-elided="true" name="ShopBtn" class="play-button" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(254, 160, 10); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100px; border-bottom-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; flex-basis: 0;">
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAdsBtn" class="no-ads-btn" style="background-image: url(&apos;project://database/Assets/Hyperbyte/BlockPuzzle/Textures/no-ads.png?fileID=2800000&amp;guid=3d153b82fe139472f9f6ae9a6730a5cf&amp;type=3#no-ads&apos;);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(254, 160, 10); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="RatingBtn" class="rating-btn" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(254, 160, 10); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsBtn" class="settings-btn" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="BrandLabel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; bottom: 50px; margin-left: 0; margin-right: 0; left: 0; right: 0;">
+                <ui:Label tabindex="-1" text="Developed by Board Collie" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(79, 79, 79); -unity-text-align: upper-center; -unity-font-style: italic;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

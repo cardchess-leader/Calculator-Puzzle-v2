@@ -1,0 +1,46 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/mainpage.uss?fileID=7433441132597879392&amp;guid=6850b20d2986b3e4c81107b9cd6fca4f&amp;type=3#mainpage" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/general.uss?fileID=7433441132597879392&amp;guid=1fa9dea595f7dff4ab08522d8168c051&amp;type=3#general" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/ingamepage.uss?fileID=7433441132597879392&amp;guid=f3dfb523655147f45956cb2d38b19516&amp;type=3#ingamepage" />
+    <ui:VisualElement name="GamePage" style="flex-grow: 0; background-color: rgb(0, 0, 0); width: 100%; height: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; min-height: auto; min-width: auto; flex-basis: auto;">
+        <ui:VisualElement name="TopPanel" class="top-panel" style="background-color: rgba(0, 0, 0, 0); align-self: auto; align-items: center;">
+            <ui:Button display-tooltip-when-elided="true" class="back-button" />
+            <ui:Label tabindex="-1" text="Level 1" display-tooltip-when-elided="true" name="LevelTitle" style="margin-left: 50px; font-size: 70px; -unity-font: url(&apos;project://database/Assets/Fonts/digital-7.ttf?fileID=12800000&amp;guid=16c82fdb85f964b43b941b95c39bc966&amp;type=3#digital-7&apos;); -unity-font-definition: initial; -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Title" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 300px; flex-shrink: 0; flex-direction: row; align-self: auto; align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Make 100" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 140px; -unity-font-style: normal;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Space" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 0;" />
+        <ui:VisualElement name="CalcContainer" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;" />
+        <ui:VisualElement name="Space" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 0;" />
+        <ui:VisualElement name="InputLog" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 200px;">
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; align-items: center; justify-content: center;">
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: flex-end; flex-basis: 0;">
+                    <ui:Label tabindex="-1" text="0/2" display-tooltip-when-elided="true" name="Count" style="color: rgba(255, 255, 255, 0.78); font-size: 60px; -unity-font-style: normal; margin-right: 20px; flex-basis: auto; flex-grow: 0; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+                <Kamgam.UIToolkitScrollViewPro.ScrollViewPro name="LogContainer" mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" scroller-buttons="false" class="LogContainer" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0; flex-direction: row;">
+                    <ui:Button display-tooltip-when-elided="true" name="Hint" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Space" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 0;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="StageClear" class="hidden" style="flex-grow: 1; width: 100%; height: 100%; position: absolute; transition-duration: 0.5s;">
+        <ui:VisualElement name="Overlay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.8); position: absolute; width: 100%; height: 100%;" />
+        <ui:VisualElement name="Section0" style="flex-grow: 1.5; background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Level 12" display-tooltip-when-elided="true" name="LevelTitle" style="font-size: 150px; -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Fonts/digital-7.ttf?fileID=12800000&amp;guid=16c82fdb85f964b43b941b95c39bc966&amp;type=3#digital-7&apos;);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Section1" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Stage Clear!" display-tooltip-when-elided="true" style="font-size: 150px; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Section2" style="flex-grow: 0.5; background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="# Hints Used: 0" display-tooltip-when-elided="true" name="NumHintsUsed" style="font-size: 80px; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Section3" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+        <ui:VisualElement name="Section4" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: center;">
+            <ui:Button text="Continue" display-tooltip-when-elided="true" name="Continue" style="background-color: rgb(254, 160, 10); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 800px; height: 200px; font-size: 80px; color: rgb(255, 255, 255); -unity-font-style: normal; border-top-left-radius: 100px; border-bottom-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Section5" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

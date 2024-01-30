@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/ingamepage.uss?fileID=7433441132597879392&amp;guid=f3dfb523655147f45956cb2d38b19516&amp;type=3#ingamepage" />
+    <ui:VisualElement class="log-number">
+        <ui:Label tabindex="-1" text="3" display-tooltip-when-elided="true" class="symbol-number-inner" />
+    </ui:VisualElement>
+</ui:UXML>

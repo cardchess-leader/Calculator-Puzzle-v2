@@ -373,9 +373,8 @@ namespace Hyperbyte.Ads
                 yield return webRequest.SendWebRequest();
                 bool isError = false;
 
-                isError = webRequest.isNetworkError || webRequest.isHttpError;
+                isError = (webRequest.result == UnityWebRequest.Result.ConnectionError) || (webRequest.result == UnityWebRequest.Result.ProtocolError);
 
-                // isError = true;
                 if (!isError)
                 {
                     ConsentResponse response = JsonUtility.FromJson<ConsentResponse>(webRequest.downloadHandler.text);

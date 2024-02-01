@@ -15,7 +15,6 @@ public class InGameController : MonoBehaviour
     VisualElement root;
     VisualElement calculator;
     Label screenLabel;
-    bool isPointerDown = false;
     string result;
     string tempResult;
     string optr;

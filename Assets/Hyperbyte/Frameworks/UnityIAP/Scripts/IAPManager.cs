@@ -18,6 +18,7 @@ using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 #if HB_UNITYIAP
 using UnityEngine.Purchasing;
+using UnityEngine.Purchasing.Extension;
 #endif
 using Hyperbyte.Localization;
 
@@ -29,7 +30,7 @@ namespace Hyperbyte
 	/// </summary>
 	public class IAPManager : Singleton<IAPManager>
 #if HB_UNITYIAP
-	, IStoreListener
+	, IDetailedStoreListener 
 #endif
 	{
 		IAPProducts iapManager;
@@ -214,15 +215,15 @@ namespace Hyperbyte
 			if (hasUnityIAPSdkInitialised)
 			{
 				// iOS-specific logic
-				extensionProvider.GetExtension<IAppleExtensions>().RestoreTransactions((result) =>
+				extensionProvider.GetExtension<IAppleExtensions>().RestoreTransactions((result, message) =>
 				{
 					if (OnRestoreCompletedEvent != null)
 					{
 						OnRestoreCompletedEvent.Invoke(result);
-					}
+}
 				});
-				// Fallback logic for other platforms
-			}
+        		// Fallback logic for other platforms
+    		}
 #else
 			if (OnRestoreCompletedEvent != null)
 			{
@@ -289,5 +290,16 @@ namespace Hyperbyte
 				OnPurchaseFailedEvent.Invoke(reason);
 			}
 		}
+#if HB_UNITYIAP
+		public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
+		{
+			// Handle the failed purchase here
+			Debug.LogError("Purchase failed: " + failureDescription);
+			if (OnPurchaseFailedEvent != null)
+			{
+				OnPurchaseFailedEvent.Invoke(failureDescription.message);
+			}
+		}
+#endif
 	}
 }

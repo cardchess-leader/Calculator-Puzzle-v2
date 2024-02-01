@@ -19,7 +19,7 @@
         <ui:VisualElement name="Title" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 300px; flex-shrink: 0; flex-direction: row; align-self: auto; align-items: center; justify-content: center; display: none;">
             <ui:Label tabindex="-1" text="PINK" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 140px; -unity-font-style: normal;" />
         </ui:VisualElement>
-        <ui:VisualElement name="Space" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 100px;" />
+        <ui:VisualElement name="BarSpace" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 100px;" />
         <Kamgam.UIToolkitScrollViewPro.ScrollViewPro mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" snap="true" infinite="true" snap-velocity-threshold="1.25" scroll-deceleration-rate="0.05" animation-fps="60" snap-duration-sec="0.3" />
         <ui:VisualElement name="Space" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 0; align-items: center; justify-content: center;">
             <ui:VisualElement name="BottomButtonGroup" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; bottom: 200px; width: 100%; flex-direction: row; align-items: auto; justify-content: center;">

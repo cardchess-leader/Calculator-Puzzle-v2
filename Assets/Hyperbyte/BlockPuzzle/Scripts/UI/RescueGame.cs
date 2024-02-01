@@ -91,7 +91,6 @@ namespace Hyperbyte
             /// Resumes the game when it gets enabled.
             AdManager.OnRewardedAdRewardedEvent -= OnRewardedAdRewarded;
             attemptedRescueWithGems = false;
-            UIController.Instance.DisableCurrencyBalanceButton();
 
             if (isRescueDone)
             {

@@ -33,9 +33,13 @@ public class ShopController : MonoBehaviour
         float aspectRatio = (float)Screen.height / (float)Screen.width;
         float iphoneAspectRatio = 2532 / 1170f;
         float minAspectRatio = 16 / 9f;
-        displacement = Mathf.Lerp(0, 70, Mathf.Max(0, (iphoneAspectRatio - aspectRatio) / (iphoneAspectRatio - minAspectRatio)));
-        Debug.Log("aspectRatio is: " + aspectRatio);
-        Debug.Log("displacement is: " + displacement);
+        displacement = Helper.BoundAndMapValue(iphoneAspectRatio, minAspectRatio, aspectRatio, 0, 70, 0, 70);
+        if (aspectRatio < minAspectRatio)
+        {
+            root.Q("BarSpace").style.flexBasis = new StyleLength(Helper.BoundAndMapValue(minAspectRatio, 1.6f, aspectRatio, 100, 0, 0, 100));
+            root.Q("BottomButtonGroup").transform.scale = new Vector2(0.7f, 0.7f);
+            displacement = Helper.BoundAndMapValue(iphoneAspectRatio, 1.6f, aspectRatio, 0, 130, 0, 130);
+        }
         root.Q("BottomButtonGroup").style.translate = new Translate(0, new Length(displacement, LengthUnit.Pixel));
     }
     void InitializeHandler()

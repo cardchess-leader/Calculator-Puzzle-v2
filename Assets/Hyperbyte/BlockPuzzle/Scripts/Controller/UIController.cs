@@ -509,20 +509,6 @@ namespace Hyperbyte
             currencyBalanceButton.GetComponent<CanvasGroup>().SetAlpha(1, 0.3F);
         }
 
-        /// <summary>
-        /// Disable currency balance button.
-        /// </summary>
-        public void DisableCurrencyBalanceButton()
-        {
-            if (!(selectThemeScreen.activeSelf || rescueGameScreen.activeSelf || gameOverScreen.activeSelf || shopScreen.activeSelf || purchaseSuccessScreen.activeSelf))
-            {
-                if (currencyBalanceButton != null && currencyBalanceButton.activeSelf)
-                {
-                    currencyBalanceButton.GetComponent<CanvasGroup>().SetAlpha(0, 0.3F);
-                }
-            }
-        }
-
         public void PlayAddGemsAnimationAtPosition(Vector3 position, float delay)
         {
             GameObject rewardAnim = (GameObject)Instantiate(Resources.Load("RewardAnimation")) as GameObject;

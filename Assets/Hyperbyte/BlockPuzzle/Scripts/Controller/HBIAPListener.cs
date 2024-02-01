@@ -48,7 +48,7 @@ namespace Hyperbyte
         /// Purchase Rewards will be processed from here. You can adjust your code based on your requirements.
         /// </summary>
         /// <param name="productInfo"></param>
-        void OnPurchaseSuccessful(ProductInfo productInfo, bool isRestore)
+        void OnPurchaseSuccessful(ProductInfo productInfo)
         {
             RewardType rewardType = ((RewardType)productInfo.rewardType);
 
@@ -57,10 +57,7 @@ namespace Hyperbyte
                 case RewardType.REMOVE_ADS:
                     ProfileManager.Instance.SetAppAsAdFree();
                     GameManager.instance.SwitchPage("Main");
-                    if (!isRestore)
-                    {
-                        UIController.Instance.ShowMessage("Purchase Successful", "Enjoy game with ad-free and 200+ more questions!");
-                    }
+                    UIController.Instance.ShowMessage("Purchase Successful", "Enjoy game with ad-free and 200+ more questions!");
                     break;
                 case RewardType.OTHER:
                     break;
@@ -87,7 +84,6 @@ namespace Hyperbyte
             if (result)
             {
                 UIController.Instance.ShowMessage(("Restore Successful"), LocalizationManager.Instance.GetTextWithTag("txtInAppRestored"));
-                IAPManager.Instance.CheckPurchasedItems();
             }
             else
             {

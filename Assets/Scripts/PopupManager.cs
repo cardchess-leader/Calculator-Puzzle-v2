@@ -21,7 +21,14 @@ public class PopupManager : MonoBehaviour
         switch (tag)
         {
             case "Hint":
-                ShowHintWithoutAd.Activate();
+                if (ProfileManager.Instance.IsAppAdFree())
+                {
+                    ShowHintWithoutAd.Activate();
+                }
+                else
+                {
+                    ShowHintWithAd.Activate();
+                }
                 break;
             case "CalcPurchseFailed":
                 UIController.Instance.ShowMessage("Purchase Failed", "Not enough Gems!");

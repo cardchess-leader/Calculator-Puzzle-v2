@@ -41,7 +41,7 @@ namespace Hyperbyte
 #endif
 
 		/// Purchase even callbacks.
-		public static event Action<ProductInfo, bool> OnPurchaseSuccessfulEvent;
+		public static event Action<ProductInfo> OnPurchaseSuccessfulEvent;
 		public static event Action<string> OnPurchaseFailedEvent;
 		public static event Action<bool> OnRestoreCompletedEvent;
 
@@ -210,27 +210,25 @@ namespace Hyperbyte
 		/// </summary>
 		public void RestoreAllProducts()
 		{
+#if HB_UNITYIAP
 			if (hasUnityIAPSdkInitialised)
 			{
-#if UNITY_IOS
 				// iOS-specific logic
-				extensionProvider.GetExtension<IAppleExtensions>().RestoreTransactions((result) => {
-					if (OnRestoreCompletedEvent != null) {
+				extensionProvider.GetExtension<IAppleExtensions>().RestoreTransactions((result) =>
+				{
+					if (OnRestoreCompletedEvent != null)
+					{
 						OnRestoreCompletedEvent.Invoke(result);
 					}
 				});
-#elif UNITY_ANDROID
-        		// Android-specific logic (if needed)
-				UIController.Instance.ShowMessage(("Restore Successful"), LocalizationManager.Instance.GetTextWithTag("txtInAppRestored"));
-                CheckPurchasedItems();
-#else
 				// Fallback logic for other platforms
-				if (OnRestoreCompletedEvent != null)
-				{
-					OnRestoreCompletedEvent.Invoke(true);
-				}
-#endif
 			}
+#else
+			if (OnRestoreCompletedEvent != null)
+			{
+				OnRestoreCompletedEvent.Invoke(true);
+			}
+#endif
 		}
 
 		/// <summary>
@@ -277,7 +275,7 @@ namespace Hyperbyte
 			ProductInfo productInfo = IAPManager.Instance.GetProductInfoByName(productName);
 			if (OnPurchaseSuccessfulEvent != null)
 			{
-				OnPurchaseSuccessfulEvent.Invoke(productInfo, false);
+				OnPurchaseSuccessfulEvent.Invoke(productInfo);
 			}
 		}
 
@@ -290,34 +288,6 @@ namespace Hyperbyte
 			{
 				OnPurchaseFailedEvent.Invoke(reason);
 			}
-		}
-
-		public void CheckPurchasedItems()
-		{
-#if HB_UNITYIAP
-			if (storeController != null && storeController.products != null)
-			{
-				foreach (var product in storeController.products.all)
-				{
-					if (product.hasReceipt)
-					{
-						// This product has been purchased
-						// Unlock features or provide content based on the product ID
-						ProductInfo productInfo = IAPManager.Instance.GetProductInfoByName(product.definition.id);
-						if (OnPurchaseSuccessfulEvent != null)
-						{
-							OnPurchaseSuccessfulEvent.Invoke(productInfo, true);
-						}
-						Debug.Log("Purchased: " + product.definition.id);
-					}
-				}
-			}
-			else
-			{
-				Debug.LogError("StoreController or products are null.");
-			}
-#else
-#endif
 		}
 	}
 }

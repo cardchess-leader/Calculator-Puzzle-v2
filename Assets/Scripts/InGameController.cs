@@ -67,6 +67,7 @@ public class InGameController : MonoBehaviour
     void OnDisable()
     {
         instance = null;
+        AdManager.OnRewardedAdRewardedEvent -= OnRewardedAdRewarded;
     }
 
     void OnHintBtnClick()
@@ -169,6 +170,10 @@ public class InGameController : MonoBehaviour
 
     void OnContinueBtnClick()
     {
+        if (!ProfileManager.Instance.IsAppAdFree() && AdManager.Instance.IsInterstitialAvailable())
+        {
+            AdManager.Instance.ShowInterstitial();
+        }
         GameManager.instance.targetLevel++;
         gameObject.SetActive(false);
         gameObject.SetActive(true);

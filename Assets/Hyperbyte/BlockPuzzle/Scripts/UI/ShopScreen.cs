@@ -22,7 +22,6 @@ namespace Hyperbyte
 	{
 #pragma warning disable 0649
 		[SerializeField] RectTransform mainContentRect;
-		[SerializeField] GameObject btnRemoveAds;
 		[SerializeField] CanvasGroup btnWatchVideo;
 		[SerializeField] Text txtWatchVideoReward;
 #pragma warning restore 0649
@@ -52,7 +51,6 @@ namespace Hyperbyte
 		private void OnDisable()
 		{
 			// Don't hide gems button if rescue screen is open.
-			UIController.Instance.Invoke("DisableCurrencyBalanceButton", 0.1F);
 			IAPManager.OnPurchaseSuccessfulEvent -= OnPurchaseSuccessful;
 		}
 
@@ -87,6 +85,7 @@ namespace Hyperbyte
 		{
 			if (InputManager.Instance.canInput())
 			{
+				InputManager.Instance.DisableTouchForDelay(1F);
 				UIFeedback.Instance.PlayButtonPressEffect();
 				AdManager.Instance.ShowRewardedWithTag("FreeGems");
 			}
@@ -96,7 +95,7 @@ namespace Hyperbyte
 		/// Purchase Rewards will be processed from here. You can adjust your code based on your requirements.
 		/// </summary>
 		/// <param name="productInfo"></param>
-		void OnPurchaseSuccessful(ProductInfo productInfo, bool isRestore)
+		void OnPurchaseSuccessful(ProductInfo productInfo)
 		{
 			Invoke("UpdateShopScreen", 0.2F);
 		}
@@ -113,16 +112,6 @@ namespace Hyperbyte
 			{
 				btnWatchVideo.alpha = 1.0F;
 				btnWatchVideo.interactable = true;
-			}
-
-			if (ProfileManager.Instance.IsAppAdFree())
-			{
-				btnRemoveAds.SetActive(false);
-				mainContentRect.sizeDelta = new Vector2(currentContentSize.x, currentContentSize.y - btnRemoveAds.GetComponent<RectTransform>().sizeDelta.y);
-			}
-			else
-			{
-				btnRemoveAds.SetActive(true);
 			}
 		}
 	}

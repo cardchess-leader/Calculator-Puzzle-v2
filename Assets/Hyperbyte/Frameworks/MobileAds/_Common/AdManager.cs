@@ -58,6 +58,7 @@ namespace Hyperbyte.Ads
         /// </summary>
         private void Start()
         {
+            lastInterstitialShownTime = Time.time + 30; // Add 30 seconds delay in interstitial when game starts
             adSettings = (AdSettings)Resources.Load("AdSettings");
             VerifyConsent();
         }
@@ -190,6 +191,7 @@ namespace Hyperbyte.Ads
             {
                 if (adSettings.adsEnabled && adSettings.interstitialAdsEnabled)
                 {
+                    lastInterstitialShownTime = Time.time;
                     MethodInfo info = adComponentType.GetMethod("ShowInterstitial", BindingFlags.Public | BindingFlags.Instance);
                     info.Invoke(adBehaviour, null);
                 }

@@ -10,7 +10,8 @@ public class QuestionSO : ScriptableObject
     {
         Easy,
         Medium,
-        Hard
+        Hard,
+        Expert
     }
     public enum Symbol
     {
@@ -36,7 +37,8 @@ public class QuestionSO : ScriptableObject
         Log,
         Pow,
         Factorial,
-        Inverse
+        Inverse,
+        Floor
     }
     public Difficulty difficulty;
     public float initialNum;

@@ -75,9 +75,6 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="BrandLabel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; bottom: 50px; margin-left: 0; margin-right: 0; left: 0; right: 0;">
-                <ui:Label tabindex="-1" text="Developed by Board Collie" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(79, 79, 79); -unity-text-align: upper-center; -unity-font-style: italic;" />
-            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

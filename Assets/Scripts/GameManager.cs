@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour
     }
     void InitPlayerPrefData()
     {
-        // PlayerPrefs.DeleteAll();
         if (PlayerPrefs.GetInt("Initialize") != 1)
         {
             string levelScore = "";
@@ -218,5 +217,9 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public int GetNumQuestionsWithDifficulty(QuestionSO.Difficulty difficulty)
+    {
+        return questionList.Count(question => question.difficulty == difficulty);
     }
 }

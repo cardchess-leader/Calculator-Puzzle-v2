@@ -79,3 +79,7 @@
 .cell.red {
     background-color: rgb(254, 10, 91);
 }
+
+.cell.purple {
+    background-color: rgb(91, 10, 254);
+}

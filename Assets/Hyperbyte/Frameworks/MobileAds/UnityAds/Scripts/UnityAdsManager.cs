@@ -182,7 +182,7 @@ namespace Hyperbyte.Ads
                 AdManager.Instance.OnInterstitialLoaded();
                 isInterstitialReady = true;
             } else if (placementId.Equals(settings.GetRewardedPlacement())) {
-                AdManager.Instance.OnRewardedAdRewarded();
+                AdManager.Instance.OnRewardedLoaded();
                 isRewardedReady = true;
             }
         }

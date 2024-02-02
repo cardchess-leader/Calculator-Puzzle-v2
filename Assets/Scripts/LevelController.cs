@@ -22,9 +22,9 @@ public class LevelController : MonoBehaviour
 
     void Update()
     {
-        // UpdatePageIndex();
-        // UpdatePanelDots();
-        // UpdatePageTitle();
+        UpdatePageIndex();
+        UpdatePanelDots();
+        UpdatePageTitle();
     }
 
     void InitializeHandler()
@@ -109,6 +109,9 @@ public class LevelController : MonoBehaviour
                     case QuestionSO.Difficulty.Hard:
                         cellElement.AddToClassList("red");
                         break;
+                    case QuestionSO.Difficulty.Expert:
+                        cellElement.AddToClassList("purple");
+                        break;
                 }
             }
             cellElement.Q<VisualElement>("Cell").userData = i;
@@ -128,26 +131,35 @@ public class LevelController : MonoBehaviour
         switch (pageIndex)
         {
             case 0:
-                title1.text = "BASIC + SCORE";
+                title1.text = "Easy + SCORE";
                 title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Easy)}";
-                title2.style.color = new StyleColor(new Color(0.25f, 1, 0, 1));
+                // title2.style.color = new StyleColor(new Color(0.25f, 1, 0, 1));
+                title2.style.color = new StyleColor(new Color(0.435f, 1, 0, 1));
                 break;
             case 1:
-                title1.text = "Hard + SCORE";
-                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Hard)}";
-                title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
+                title1.text = "Medium + SCORE";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Medium)}";
+                // title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
+                title2.style.color = new StyleColor(new Color(1, 0.616f, 0, 1));
                 break;
             case 2:
-                title1.text = "MORE + PUZZLE";
-                title2.text = "= ???";
-                title2.style.color = new StyleColor(new Color(0, 1, 1, 1));
+                title1.text = "Hard + SCORE";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Hard)}";
+                // title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
+                title2.style.color = new StyleColor(new Color(1, 0, 0.333f, 1));
+                break;
+            case 3:
+                title1.text = "Expert + SCORE";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Expert)}";
+                // title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
+                title2.style.color = new StyleColor(new Color(0.333f, 0, 1, 1));
                 break;
         }
     }
 
     void UpdatePanelDots()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             root.Q<VisualElement>($"Dot_{i + 1}").Q<VisualElement>("InnerDot").style.visibility = Visibility.Hidden;
         }
@@ -156,11 +168,27 @@ public class LevelController : MonoBehaviour
 
     void UpdatePageIndex()
     {
-        ScrollViewPro horizontalScrollView = root.Q<ScrollViewPro>("HorizontalScrollView");
-        int index = (int)Mathf.Round(horizontalScrollView.horizontalScroller.value / horizontalScrollView.resolvedStyle.width);
-        if (index >= 0 && index < 3)
+        ScrollViewPro scrollView = root.Q<ScrollViewPro>();
+        float scrollAmount = scrollView.verticalScroller.value;
+        float easyHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Easy);
+        float mediumHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Medium);
+        float hardHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Hard);
+        float expertHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Expert);
+        if (scrollAmount < easyHeight - scrollView.resolvedStyle.height / 2)
         {
-            pageIndex = index;
+            pageIndex = 0;
+        }
+        else if (scrollAmount < easyHeight + mediumHeight - scrollView.resolvedStyle.height / 2)
+        {
+            pageIndex = 1;
+        }
+        else if (scrollAmount > easyHeight + mediumHeight + hardHeight + expertHeight / 2 - scrollView.resolvedStyle.height)
+        {
+            pageIndex = 3;
+        }
+        else
+        {
+            pageIndex = 2;
         }
     }
 }

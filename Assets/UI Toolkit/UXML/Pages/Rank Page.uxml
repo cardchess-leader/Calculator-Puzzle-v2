@@ -30,13 +30,13 @@
                             <ui:Label tabindex="-1" text="Country" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="-unity-text-align: middle-center; -unity-font-style: bold;" />
                         </ui:VisualElement>
                         <ui:VisualElement name="Points" style="flex-shrink: 0; width: 200px; justify-content: center; align-items: center;">
-                            <ui:Label tabindex="-1" text="Points" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="padding-left: 1px; flex-grow: 0; -unity-text-align: middle-right; -unity-font-style: bold;" />
+                            <ui:Label tabindex="-1" text="Score" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="padding-left: 1px; flex-grow: 0; -unity-text-align: middle-right; -unity-font-style: bold;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Body" style="flex-grow: 1;">
-                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="flex-grow: 1; flex-shrink: 1;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="ScrollView" style="flex-grow: 1; flex-shrink: 1;">
                     <ui:Instance template="Row" name="Row" />
                 </ui:ScrollView>
             </ui:VisualElement>

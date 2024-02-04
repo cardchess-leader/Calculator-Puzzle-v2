@@ -1,16 +1,41 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
-using Newtonsoft.Json;
+
+public class ScoreRawEntry
+{
+    public string PlayerId { get; set; }
+    public string Score { get; set; }
+    public string Rank { get; set; }
+    public string Metadata { get; set; }
+}
+
+public class ScoreEntry
+{
+    public string PlayerId { get; set; }
+    public int Score { get; set; }
+    public int Rank { get; set; }
+    public Dictionary<string, string> Metadata { get; set; }
+}
+
+public class ScoreResponse
+{
+    public int limit;
+    public int total;
+    public List<ScoreRawEntry> results;
+}
 
 public class LeaderBoardController : MonoBehaviour
 {
     public static LeaderBoardController instance;
-    // Flag to prevent multiple initializations.
-    // private bool isInitializing = false;
     public bool initialized;
+    public bool authenticated;
     void Awake()
     {
         instance = this;
@@ -19,36 +44,57 @@ public class LeaderBoardController : MonoBehaviour
 
     IEnumerator EnsureServicesInitialized()
     {
-        // Prevent entering this coroutine multiple times.
-        // if (isInitializing) yield break;
-        // isInitializing = true;
-
-        // Wait until UnityServices are initialized.
         while (UnityServices.State != ServicesInitializationState.Initialized)
         {
             yield return new WaitForSeconds(1);
-            // Optionally, attempt to initialize UnityServices here if not already done elsewhere.
         }
         initialized = true;
-        MainController.instance.EnableRankBtn();
         SetupEvents();
-        // isInitializing = false;
-        // Proceed with leaderboard retrieval.
-        GetLeaderBoard();
+        Authenticate();
+    }
+    async void Authenticate()
+    {
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        authenticated = true;
+        await AddScore();
+        MainController.instance.EnableRankBtn();
     }
 
-    async void GetLeaderBoard()
+    public async Task AddScore()
+    {
+        var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(
+            "Total_Score",
+            1,
+            new AddPlayerScoreOptions
+            {
+                Metadata = new Dictionary<string, string>() { { "nickname", "boardcollie97" }, { "country", "US" } }
+            }
+        );
+        Debug.Log(JsonConvert.SerializeObject(playerEntry));
+    }
+
+    public async Task<List<ScoreEntry>> GetTop100Rank()
     {
         try
         {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            await LeaderboardsService.Instance.AddPlayerScoreAsync("Total_Score", 1);
-            var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync("Total_Score");
+            var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync("Total_Score", new GetScoresOptions { Limit = 100, IncludeMetadata = true });
             Debug.Log(JsonConvert.SerializeObject(scoresResponse));
+            var scoresResponseObject = JsonConvert.DeserializeObject<ScoreResponse>(JsonConvert.SerializeObject(scoresResponse));
+            // Corrected to deserialize Metadata properly and added ToList()
+            var scoreEntries = scoresResponseObject.results.Select(scoreRawEntry => new ScoreEntry
+            {
+                PlayerId = scoreRawEntry.PlayerId,
+                Score = (int)float.Parse(scoreRawEntry.Score),
+                Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
+                Metadata = JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata) // Corrected case and method
+            }).ToList();
+
+            return scoreEntries;
         }
         catch (System.Exception e)
         {
             Debug.LogError($"Failed to retrieve leaderboard or authenticate: {e.Message}");
+            return new List<ScoreEntry>(); // Correctly returns an empty list in case of an error
         }
     }
 

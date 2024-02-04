@@ -133,25 +133,21 @@ public class LevelController : MonoBehaviour
             case 0:
                 title1.text = "Easy + SCORE";
                 title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Easy)}";
-                // title2.style.color = new StyleColor(new Color(0.25f, 1, 0, 1));
                 title2.style.color = new StyleColor(new Color(0.435f, 1, 0, 1));
                 break;
             case 1:
                 title1.text = "Medium + SCORE";
                 title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Medium)}";
-                // title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
                 title2.style.color = new StyleColor(new Color(1, 0.616f, 0, 1));
                 break;
             case 2:
                 title1.text = "Hard + SCORE";
                 title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Hard)}";
-                // title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
                 title2.style.color = new StyleColor(new Color(1, 0, 0.333f, 1));
                 break;
             case 3:
                 title1.text = "Expert + SCORE";
                 title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Expert)}";
-                // title2.style.color = new StyleColor(new Color(1, 0, 0, 1));
                 title2.style.color = new StyleColor(new Color(0.333f, 0, 1, 1));
                 break;
         }
@@ -174,11 +170,11 @@ public class LevelController : MonoBehaviour
         float mediumHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Medium);
         float hardHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Hard);
         float expertHeight = 200 / 5 * GameManager.instance.GetNumQuestionsWithDifficulty(QuestionSO.Difficulty.Expert);
-        if (scrollAmount < easyHeight - scrollView.resolvedStyle.height / 2)
+        if (scrollAmount < easyHeight)
         {
             pageIndex = 0;
         }
-        else if (scrollAmount < easyHeight + mediumHeight - scrollView.resolvedStyle.height / 2)
+        else if (scrollAmount < easyHeight + mediumHeight)
         {
             pageIndex = 1;
         }

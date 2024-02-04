@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,13 +22,6 @@ public class Helper
         }
         return res;
     }
-
-    // public static void SetVisibility(VisualElement element, bool show)
-    // {
-    //     element.style.visibility = show ? Visibility.Visible : Visibility.Hidden;
-    //     element.pickingMode = show ? PickingMode.Position : PickingMode.Ignore;
-    // }
-
     public static int Modulo(int argument, int modulo)
     {
         return (argument % modulo + modulo) % modulo;
@@ -38,5 +32,12 @@ public class Helper
         float x = (valueSubject - value1) / (value2 - value1);
         float mapValue = mapValue1 * (1 - x) + mapValue2 * (x);
         return Mathf.Min(Mathf.Max(min, mapValue), max);
+    }
+
+    public static int GetNthDayOfToday()
+    {
+        DateTime today = DateTime.Today;
+        DateTime firstDayOfYear = new DateTime(today.Year, 1, 1);
+        return (today - firstDayOfYear).Days;
     }
 }

@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public List<QuestionSO> questionList = new List<QuestionSO>();
+    public List<QuestionSO> dailyQuestionList = new List<QuestionSO>();
     public List<CalculatorSO> calculatorList = new List<CalculatorSO>();
-    public GameObject mainPage, levelPage, inGamePage, shopPage;
+    public GameObject mainPage, levelPage, inGamePage, shopPage, rankPage;
     public int dailyScore;
     public int targetLevel;
     public bool isDaily;
@@ -113,9 +114,17 @@ public class GameManager : MonoBehaviour
                 break;
             case "InGame":
                 activePage = inGamePage;
+                isDaily = false;
                 break;
             case "Shop":
                 activePage = shopPage;
+                break;
+            case "Daily":
+                activePage = inGamePage;
+                isDaily = true;
+                break;
+            case "Rank":
+                activePage = rankPage;
                 break;
         }
         activePage.SetActive(true);
@@ -133,8 +142,10 @@ public class GameManager : MonoBehaviour
             }
             PlayerPrefs.SetString("Level Score", levelScore);
             PlayerPrefs.SetString("Level Hint", levelHint);
-            PlayerPrefs.SetInt("Daily Score", 0);
-            PlayerPrefs.SetInt("Daily Hint", 0);
+            PlayerPrefs.SetInt("Daily Score", 0); // Accumulate Score
+            PlayerPrefs.SetInt("Daily Today Score", 0); // Today's Daily Score
+            PlayerPrefs.SetInt("Daily Hint", 0); // Today's Daily Hint
+            PlayerPrefs.SetString("Daily Date", ""); // Last Daily Access Date
             PlayerPrefs.SetInt("Calc Basic", 2);
             PlayerPrefs.SetInt("Calc Round", 1);
             PlayerPrefs.SetInt("Initialize", 1);
@@ -145,7 +156,14 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            return int.Parse(PlayerPrefs.GetString("Level Hint")[targetLevel].ToString());
+            if (isDaily)
+            {
+                return PlayerPrefs.GetInt("Daily Hint");
+            }
+            else
+            {
+                return int.Parse(PlayerPrefs.GetString("Level Hint")[targetLevel].ToString());
+            }
         }
         catch (Exception e)
         {
@@ -158,9 +176,16 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            string hintString = PlayerPrefs.GetString("Level Hint");
-            int newHintLevel = int.Parse(hintString[targetLevel].ToString()) + 1;
-            PlayerPrefs.SetString("Level Hint", Helper.ReplaceCharAt(hintString, newHintLevel.ToString(), targetLevel));
+            if (isDaily)
+            {
+                PlayerPrefs.SetInt("Daily Hint", PlayerPrefs.GetInt("Daily Hint") + 1);
+            }
+            else
+            {
+                string hintString = PlayerPrefs.GetString("Level Hint");
+                int newHintLevel = int.Parse(hintString[targetLevel].ToString()) + 1;
+                PlayerPrefs.SetString("Level Hint", Helper.ReplaceCharAt(hintString, newHintLevel.ToString(), targetLevel));
+            }
         }
         catch (Exception e)
         {
@@ -172,13 +197,22 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            string scoreString = PlayerPrefs.GetString("Level Score");
-            string hintString = PlayerPrefs.GetString("Level Hint");
-            if (scoreString[targetLevel] == '0')
+            if (isDaily)
             {
-                PlayerPrefs.SetString("Level Score", Helper.ReplaceCharAt(scoreString, score.ToString(), targetLevel));
+                PlayerPrefs.SetInt("Daily Hint", 0);
+                PlayerPrefs.SetInt("Daily Today Score", score);
+                PlayerPrefs.SetInt("Daily Score", PlayerPrefs.GetInt("Daily Score") + score);
             }
-            PlayerPrefs.SetString("Level Hint", Helper.ReplaceCharAt(hintString, "0", targetLevel));
+            else
+            {
+                string scoreString = PlayerPrefs.GetString("Level Score");
+                string hintString = PlayerPrefs.GetString("Level Hint");
+                if (scoreString[targetLevel] == '0')
+                {
+                    PlayerPrefs.SetString("Level Score", Helper.ReplaceCharAt(scoreString, score.ToString(), targetLevel));
+                }
+                PlayerPrefs.SetString("Level Hint", Helper.ReplaceCharAt(hintString, "0", targetLevel));
+            }
         }
         catch (Exception e)
         {
@@ -221,5 +255,30 @@ public class GameManager : MonoBehaviour
     public int GetNumQuestionsWithDifficulty(QuestionSO.Difficulty difficulty)
     {
         return questionList.Count(question => question.difficulty == difficulty);
+    }
+
+    public bool IsDailySolved()
+    {
+        if (PlayerPrefs.GetString("Daily Date") == DateTime.Today.ToString("M/d/yyyy") && PlayerPrefs.GetInt("Daily Today Score") > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public QuestionSO GetDailyQuestion()
+    {
+        if (dailyQuestionList.Count == 0)
+        {
+            return null;
+        }
+        if (PlayerPrefs.GetString("Daily Date") != DateTime.Today.ToString("M/d/yyyy"))
+        {
+            PlayerPrefs.SetString("Daily Date", DateTime.Today.ToString("M/d/yyyy"));
+            PlayerPrefs.SetInt("Daily Hint", 0);
+            PlayerPrefs.SetInt("Daily Today Score", 0);
+        }
+        int todayIndex = Helper.GetNthDayOfToday();
+        return dailyQuestionList[todayIndex % dailyQuestionList.Count];
     }
 }

@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/general.uss?fileID=7433441132597879392&amp;guid=1fa9dea595f7dff4ab08522d8168c051&amp;type=3#general" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/rankpage.uss?fileID=7433441132597879392&amp;guid=c385b4d5bcc46694db5501f52c326e06&amp;type=3#rankpage" />
+    <ui:VisualElement name="Row" class="rank-row">
+        <ui:VisualElement name="Rank" class="row-rank">
+            <ui:Label tabindex="-1" text="11" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="-unity-text-align: middle-center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Background" class="row-background">
+            <ui:VisualElement name="Player" style="flex-grow: 1; justify-content: center;">
+                <ui:Label tabindex="-1" text="TheMostAdvanced" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="margin-left: 0; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Country" style="flex-grow: 0; width: 200px; flex-shrink: 0; align-items: center; justify-content: center;">
+                <ui:Label tabindex="-1" text="Country" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="-unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Points" style="flex-shrink: 0; width: 200px; justify-content: center; align-items: center;">
+                <ui:Label tabindex="-1" text="1234" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="padding-left: 1px; flex-grow: 0; -unity-text-align: middle-right;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

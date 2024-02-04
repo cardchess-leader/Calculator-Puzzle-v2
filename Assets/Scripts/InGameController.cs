@@ -47,7 +47,8 @@ public class InGameController : MonoBehaviour
         { "Log", "Log" },
         { "Pow", "Pow" },
         { "Factorial", "Factorial" },
-        { "Inverse", "Inverse" }
+        { "Inverse", "Inverse" },
+        { "Round", "Round" }
     };
 
     void OnEnable()
@@ -120,7 +121,7 @@ public class InGameController : MonoBehaviour
     void InitializeCalcSetting()
     {
         root.Q("CalcContainer").Add(Resources.Load<VisualTreeAsset>($"Calculator/{GameManager.instance.GetCurrentCalcName()}/Calculator").CloneTree());
-        question = GameManager.instance.questionList[GameManager.instance.targetLevel];
+        question = GameManager.instance.isDaily ? GameManager.instance.GetDailyQuestion() : GameManager.instance.questionList[GameManager.instance.targetLevel];
         for (int i = 0; i < question.swapFromSymbols.Count; i++)
         {
             VisualElement elementToRemove = root.Q<VisualElement>("Calculator").Q<VisualElement>(question.swapFromSymbols[i].ToString());
@@ -142,17 +143,39 @@ public class InGameController : MonoBehaviour
 
     void InitializeHeader()
     {
-        root.Q<Label>("LevelTitle").text = $"Level {GameManager.instance.targetLevel + 1}";
-        root.Q<VisualElement>("Title").Q<Label>().text = $"Make {question.goalNum}";
-        if (question.difficulty == QuestionSO.Difficulty.Easy)
+        if (GameManager.instance.isDaily)
         {
-            root.Q("GamePage").AddToClassList("basicLevel");
-            root.Q("StageClear").AddToClassList("basicLevel");
+            root.Q<Label>("LevelTitle").text = DateTime.Today.ToString("M/d/yyyy");
         }
         else
         {
+            root.Q<Label>("LevelTitle").text = $"Level {GameManager.instance.targetLevel + 1}";
+        }
+        root.Q<VisualElement>("Title").Q<Label>().text = $"Make {question.goalNum}";
+        if (GameManager.instance.isDaily)
+        {
+            root.Q("GamePage").AddToClassList("dailyLevel");
+            root.Q("StageClear").AddToClassList("dailyLevel");
+        }
+        else if (question.difficulty == QuestionSO.Difficulty.Easy)
+        {
+            root.Q("GamePage").AddToClassList("easyLevel");
+            root.Q("StageClear").AddToClassList("easyLevel");
+        }
+        else if (question.difficulty == QuestionSO.Difficulty.Medium)
+        {
+            root.Q("GamePage").AddToClassList("mediumLevel");
+            root.Q("StageClear").AddToClassList("mediumLevel");
+        }
+        else if (question.difficulty == QuestionSO.Difficulty.Hard)
+        {
             root.Q("GamePage").AddToClassList("hardLevel");
             root.Q("StageClear").AddToClassList("hardLevel");
+        }
+        else
+        {
+            root.Q("GamePage").AddToClassList("expertLevel");
+            root.Q("StageClear").AddToClassList("expertLevel");
         }
     }
 
@@ -160,7 +183,14 @@ public class InGameController : MonoBehaviour
     {
         root.Q<Button>(className: "back-button").clicked += () =>
         {
-            GameManager.instance.SwitchPage("Level");
+            if (GameManager.instance.isDaily)
+            {
+                GameManager.instance.SwitchPage("Main");
+            }
+            else
+            {
+                GameManager.instance.SwitchPage("Level");
+            }
         };
         root.Q<VisualElement>("Calculator").RegisterCallback<ClickEvent>(HandleCalcBtnClick);
         root.Q<Button>("Hint").clicked += OnHintBtnClick;
@@ -173,9 +203,16 @@ public class InGameController : MonoBehaviour
         {
             AdManager.Instance.ShowInterstitial();
         }
-        GameManager.instance.targetLevel++;
-        gameObject.SetActive(false);
-        gameObject.SetActive(true);
+        if (GameManager.instance.isDaily)
+        {
+            GameManager.instance.SwitchPage("Main");
+        }
+        else
+        {
+            GameManager.instance.targetLevel++;
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+        }
     }
 
     void InitializeCalc()
@@ -343,6 +380,7 @@ public class InGameController : MonoBehaviour
             case "Pow":
             case "Factorial":
             case "Inverse":
+            case "Round":
                 return true;
         }
         return false;
@@ -366,7 +404,6 @@ public class InGameController : MonoBehaviour
     {
         if (question.goalNum.ToString() == result)
         {
-            Debug.Log("You got the answer correct!");
             StartCoroutine(OnStageClearCoroutine());
         }
     }
@@ -374,7 +411,15 @@ public class InGameController : MonoBehaviour
     IEnumerator OnStageClearCoroutine()
     {
         root.Q("StageClear").RemoveFromClassList("hidden");
-        root.Q("StageClear").Q<Label>("LevelTitle").text = $"Level {GameManager.instance.targetLevel + 1}";
+        if (GameManager.instance.isDaily)
+        {
+            root.Q("StageClear").Q<Label>("LevelTitle").text = DateTime.Today.ToString("M/d/yyyy");
+            root.Q<Button>("Continue").text = "Main Menu";
+        }
+        else
+        {
+            root.Q("StageClear").Q<Label>("LevelTitle").text = $"Level {GameManager.instance.targetLevel + 1}";
+        }
         root.Q<Label>("NumHintsUsed").text = $"# Hints Used: {GameManager.instance.GetHintLevel()}";
         int score = Mathf.Clamp(3 - GameManager.instance.GetHintLevel(), 1, 3);
         VisualElement scoreElement = Resources.Load<VisualTreeAsset>($"Score/Score {score}").CloneTree();
@@ -425,6 +470,8 @@ public class InGameController : MonoBehaviour
                 return result;
             case "Inverse":
                 return 1 / operand;
+            case "Round":
+                return Mathf.Floor(operand + 0.5f);
         }
         throw new Exception();
     }

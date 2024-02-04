@@ -133,7 +133,7 @@
     background-color: rgba(0, 0, 0, 0);
     width: 100px;
     height: 100px;
-    background-image: url('project://database/Assets/Images/light-bulb(1).png?fileID=2800000&guid=a96e6c4f31c1f2d42a9d7d02df4f8c58&type=3#light-bulb(1)');
+    background-image: url('project://database/Assets/Images/Hint.png?fileID=2800000&guid=a96e6c4f31c1f2d42a9d7d02df4f8c58&type=3#Hint');
     margin-left: 25px;
     border-left-width: 0;
     border-right-width: 0;
@@ -141,12 +141,20 @@
     border-bottom-width: 0;
 }
 
-.basicLevel #LevelTitle {
+.easyLevel #LevelTitle {
     color: rgb(64, 255, 0);
 }
 
+.mediumLevel #LevelTitle {
+    color: rgb(255, 157, 0);
+}
+
 .hardLevel #LevelTitle {
-    color: rgb(255, 0, 0);
+    color: rgb(255, 0, 85);
+}
+
+.expertLevel #LevelTitle {
+    color: rgb(85, 0, 255);
 }
 
 .dailyLevel #LevelTitle {

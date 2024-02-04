@@ -1,0 +1,48 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="Row" src="project://database/Assets/UI%20Toolkit/UXML/Resources/Rank/Row.uxml?fileID=9197481963319205126&amp;guid=7c2b330edbc470145b23be431c05f8fe&amp;type=3#Row" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/rankpage.uss?fileID=7433441132597879392&amp;guid=c385b4d5bcc46694db5501f52c326e06&amp;type=3#rankpage" />
+    <Style src="project://database/Assets/UI%20Toolkit/USS/general.uss?fileID=7433441132597879392&amp;guid=1fa9dea595f7dff4ab08522d8168c051&amp;type=3#general" />
+    <ui:VisualElement name="GamePage" style="flex-grow: 0; background-color: rgb(0, 0, 0); width: 100%; height: 100%; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; min-height: auto; min-width: auto; flex-basis: auto; background-image: url(&apos;project://database/Assets/Images/Gradation.png?fileID=2800000&amp;guid=87b919fd43a01e24eb4c635d57588275&amp;type=3#Gradation&apos;);">
+        <ui:VisualElement name="Background" style="flex-grow: 1; position: absolute; left: 0; top: 0; right: 0; bottom: 0; justify-content: center; align-items: center; background-image: none; -unity-background-scale-mode: scale-to-fit; scale: 1 1; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-image-tint-color: rgba(255, 255, 255, 0.58);">
+            <ui:VisualElement class="background-row">
+                <ui:VisualElement class="background-cell" />
+                <ui:VisualElement style="flex-grow: 0; width: 300px; height: 300px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TopPanel" class="top-panel" style="background-color: rgba(0, 0, 0, 0); align-self: auto; align-items: center;">
+            <ui:Button display-tooltip-when-elided="true" class="back-button" />
+            <ui:Label tabindex="-1" text="Ranking" display-tooltip-when-elided="true" name="Title" style="margin-left: 50px; font-size: 70px; -unity-font: url(&apos;project://database/Assets/Fonts/digital-7.ttf?fileID=12800000&amp;guid=16c82fdb85f964b43b941b95c39bc966&amp;type=3#digital-7&apos;); -unity-font-definition: initial; -unity-font-style: bold; color: rgb(255, 255, 0);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Title" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 200px; flex-shrink: 0; flex-direction: row; align-self: auto; align-items: center; justify-content: center; max-height: 400px;">
+            <ui:Label tabindex="-1" text="Total Score" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 80px; -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RankContainer" style="flex-grow: 1; padding-right: 10px; padding-left: 10px;">
+            <ui:VisualElement name="Title" style="flex-grow: 0; flex-shrink: 0; flex-basis: 150px; margin-top: 30px;">
+                <ui:VisualElement name="Row" style="flex-grow: 1; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; flex-direction: row; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(0, 0, 0, 0.4); align-items: stretch; height: 120px;">
+                    <ui:VisualElement name="Rank" style="flex-grow: 0; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; justify-content: center; width: 135px;">
+                        <ui:Label tabindex="-1" text="Rank" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="-unity-text-align: middle-center; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Background" style="flex-grow: 1; flex-direction: row; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-left: 25px;">
+                        <ui:VisualElement name="Player" style="flex-grow: 1; justify-content: center;">
+                            <ui:Label tabindex="-1" text="Player" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="margin-left: 0; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 50px; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Country" style="flex-grow: 0; width: 200px; flex-shrink: 0; align-items: center; justify-content: center;">
+                            <ui:Label tabindex="-1" text="Country" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="-unity-text-align: middle-center; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Points" style="flex-shrink: 0; width: 200px; justify-content: center; align-items: center;">
+                            <ui:Label tabindex="-1" text="Points" parse-escape-sequences="true" display-tooltip-when-elided="true" class="rank-label" style="padding-left: 1px; flex-grow: 0; -unity-text-align: middle-right; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Body" style="flex-grow: 1;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="flex-grow: 1; flex-shrink: 1;">
+                    <ui:Instance template="Row" name="Row" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="PlayerStat" style="flex-grow: 0; flex-shrink: 0;">
+                <ui:Instance template="Row" name="Row" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

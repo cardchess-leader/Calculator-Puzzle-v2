@@ -38,7 +38,7 @@ public class QuestionSO : ScriptableObject
         Pow,
         Factorial,
         Inverse,
-        Floor
+        Round
     }
     public Difficulty difficulty;
     public float initialNum;

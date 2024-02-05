@@ -36,16 +36,16 @@ public class RankController : MonoBehaviour
     VisualElement GenerateRankRow(ScoreEntry score)
     {
         VisualElement row = Resources.Load<VisualTreeAsset>("Rank/Row").CloneTree();
-        row.Q<Label>("Rank").text = score.Rank.ToString();
+        row.Q("Rank").Q<Label>().text = score.Rank.ToString();
 
         // Optimized handling for nickname and country metadata
         string nickname = score.Metadata.TryGetValue("nickname", out string nickValue) ? nickValue : "TEMP";
-        row.Q<Label>("Player").text = nickname;
+        row.Q("Player").Q<Label>().text = nickname;
 
         string country = score.Metadata.TryGetValue("country", out string countryValue) ? countryValue : "TEMP";
-        row.Q<Label>("Country").text = country;
+        row.Q("Country").Q<Label>().text = country;
 
-        row.Q<Label>("Score").text = score.Score.ToString();
+        row.Q("Score").Q<Label>().text = score.Score.ToString();
 
         return row;
     }

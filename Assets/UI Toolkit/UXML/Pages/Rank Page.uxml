@@ -36,9 +36,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Body" style="flex-grow: 1;">
-                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="ScrollView" style="flex-grow: 1; flex-shrink: 1;">
-                    <ui:Instance template="Row" name="Row" />
-                </ui:ScrollView>
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="ScrollView" style="flex-grow: 1; flex-shrink: 1;" />
             </ui:VisualElement>
             <ui:VisualElement name="PlayerStat" style="flex-grow: 0; flex-shrink: 0;">
                 <ui:Instance template="Row" name="Row" />

@@ -56,22 +56,37 @@ public class LeaderBoardController : MonoBehaviour
     {
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
         authenticated = true;
-        await AddScore();
         MainController.instance.EnableRankBtn();
+        await GetPlayerScore();
     }
 
-    public async Task AddScore()
+    public async Task UpdateScore()
     {
+        int totalScore = GameManager.instance.GetTotalScore();
         var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(
             "Total_Score",
-            1,
+            totalScore,
             new AddPlayerScoreOptions
             {
-                Metadata = new Dictionary<string, string>() { { "nickname", "boardcollie97" }, { "country", "US" } }
+                Metadata = GameManager.instance.GetPlayerProfile()
             }
         );
-        Debug.Log(JsonConvert.SerializeObject(playerEntry));
+        // Debug.Log(JsonConvert.SerializeObject(playerEntry));
     }
+
+    // public async Task UpdateProfile(string nickname, string country)
+    // {
+    //     int totalScore = GameManager.instance.GetTotalScore();
+    //     Task updateTotalScoreTask = LeaderboardsService.Instance.AddPlayerScoreAsync(
+    //         "Total_Score",
+    //         totalScore,
+    //         new AddPlayerScoreOptions
+    //         {
+    //             Metadata = new Dictionary<string, string>() { { "nickname", nickname }, { "country", country } }
+    //         }
+    //     );
+    //     await Task.WhenAll(updateTotalScoreTask);
+    // }
 
     public async Task<List<ScoreEntry>> GetTop100Rank()
     {
@@ -86,7 +101,7 @@ public class LeaderBoardController : MonoBehaviour
                 PlayerId = scoreRawEntry.PlayerId,
                 Score = (int)float.Parse(scoreRawEntry.Score),
                 Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
-                Metadata = JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata) // Corrected case and method
+                Metadata = scoreRawEntry.Metadata == null ? (new Dictionary<string, string>() { { "nickname", "Anonymous" }, { "country", "UN" } }) : JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata) // Corrected case and method
             }).ToList();
 
             return scoreEntries;
@@ -95,6 +110,26 @@ public class LeaderBoardController : MonoBehaviour
         {
             Debug.LogError($"Failed to retrieve leaderboard or authenticate: {e.Message}");
             return new List<ScoreEntry>(); // Correctly returns an empty list in case of an error
+        }
+    }
+
+    public async Task<ScoreEntry> GetPlayerScore()
+    {
+        try
+        {
+            var scoreResponse = await LeaderboardsService.Instance.GetPlayerScoreAsync("Total_Score", new GetPlayerScoreOptions { IncludeMetadata = true });
+            var scoreRawEntry = JsonConvert.DeserializeObject<ScoreRawEntry>(JsonConvert.SerializeObject(scoreResponse));
+            return new ScoreEntry
+            {
+                PlayerId = scoreRawEntry.PlayerId,
+                Score = (int)float.Parse(scoreRawEntry.Score),
+                Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
+                Metadata = scoreRawEntry.Metadata == null ? (new Dictionary<string, string>() { { "nickname", "Anonymous" }, { "country", "UN" } }) : JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata) // Corrected case and method
+            };
+        }
+        catch (System.Exception e)
+        {
+            return new ScoreEntry();
         }
     }
 

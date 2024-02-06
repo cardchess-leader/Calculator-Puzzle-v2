@@ -10,6 +10,7 @@ public class PopupManager : MonoBehaviour
     public GameObject ShowHintWithAd;
     public GameObject ShowHintWithoutAd;
     public GameObject CalcPurchaseConfirm;
+    public GameObject RankProfileSetup;
     public Text CalcPurchaseConfirmContentText;
     void Awake()
     {
@@ -35,6 +36,9 @@ public class PopupManager : MonoBehaviour
                 break;
             case "CalcPurchseSuccessful":
                 UIController.Instance.ShowMessage("Success", "Purchase Successful!");
+                break;
+            case "RankProfileSetup":
+                RankProfileSetup.Activate();
                 break;
         }
     }

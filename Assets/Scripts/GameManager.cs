@@ -281,4 +281,25 @@ public class GameManager : MonoBehaviour
         int todayIndex = Helper.GetNthDayOfToday();
         return dailyQuestionList[todayIndex % dailyQuestionList.Count];
     }
+
+    public void SetRankProfile()
+    {
+        PlayerPrefs.SetInt("Profile Set", 1);
+    }
+
+    public bool IsRankProfileSet()
+    {
+        return PlayerPrefs.GetInt("Profile Set") == 1;
+    }
+
+    public void SetPlayerProfile(string nickname, string country)
+    {
+        PlayerPrefs.SetString("nickname", nickname);
+        PlayerPrefs.SetString("country", country);
+    }
+
+    public Dictionary<string, string> GetPlayerProfile()
+    {
+        return new Dictionary<string, string>() { { "nickname", PlayerPrefs.GetString("nickname") }, { "country", PlayerPrefs.GetString("country") } };
+    }
 }

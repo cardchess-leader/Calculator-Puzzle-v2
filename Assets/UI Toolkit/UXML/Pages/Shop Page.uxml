@@ -23,13 +23,13 @@
         <Kamgam.UIToolkitScrollViewPro.ScrollViewPro mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" snap="true" infinite="true" snap-velocity-threshold="1.25" scroll-deceleration-rate="0.05" animation-fps="60" snap-duration-sec="0.3" />
         <ui:VisualElement name="Space" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 0; align-items: center; justify-content: center;">
             <ui:VisualElement name="BottomButtonGroup" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; bottom: 200px; width: 100%; flex-direction: row; align-items: auto; justify-content: center;">
-                <ui:Button text="   Locked" display-tooltip-when-elided="true" name="Locked" class="bottom-btn bottom-btn-position" style="visibility: visible;">
-                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/lock.png?fileID=2800000&amp;guid=489fb2cd1e732aa44869d9757d7625a2&amp;type=3#lock&apos;); -unity-background-scale-mode: scale-to-fit; width: 70px; height: 70px; position: relative; left: 170px; -unity-background-image-tint-color: rgb(0, 0, 0);" />
+                <ui:Button text="   Locked" display-tooltip-when-elided="true" name="Locked" class="bottom-btn bottom-btn-position ui-btn" style="visibility: visible;">
+                    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/lock.png?fileID=2800000&amp;guid=489fb2cd1e732aa44869d9757d7625a2&amp;type=3#lock&apos;); -unity-background-scale-mode: scale-to-fit; width: 70px; height: 70px; position: relative; left: 170px; -unity-background-image-tint-color: rgb(0, 0, 0);" />
                 </ui:Button>
-                <ui:Button text="   Unlocked" display-tooltip-when-elided="true" name="Unlocked" class="bottom-btn bottom-btn-position" style="display: flex; visibility: hidden;">
-                    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/unlock.png?fileID=2800000&amp;guid=39e259cc40642e442af893adf49c24bb&amp;type=3#unlock&apos;); -unity-background-scale-mode: scale-to-fit; width: 70px; height: 70px; position: relative; left: 130px; -unity-background-image-tint-color: rgb(0, 0, 0);" />
+                <ui:Button text="   Unlocked" display-tooltip-when-elided="true" name="Unlocked" class="bottom-btn bottom-btn-position ui-btn" style="display: flex; visibility: hidden;">
+                    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/unlock.png?fileID=2800000&amp;guid=39e259cc40642e442af893adf49c24bb&amp;type=3#unlock&apos;); -unity-background-scale-mode: scale-to-fit; width: 70px; height: 70px; position: relative; left: 130px; -unity-background-image-tint-color: rgb(0, 0, 0);" />
                 </ui:Button>
-                <ui:Button text="Active" display-tooltip-when-elided="true" name="Active" class="bottom-btn bottom-btn-position" style="display: flex; position: absolute; visibility: hidden; color: rgb(255, 255, 255); background-color: rgb(254, 160, 10);" />
+                <ui:Button text="Active" display-tooltip-when-elided="true" name="Active" class="bottom-btn bottom-btn-position ui-btn" style="display: flex; position: absolute; visibility: hidden; color: rgb(255, 255, 255); background-color: rgb(254, 160, 10);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

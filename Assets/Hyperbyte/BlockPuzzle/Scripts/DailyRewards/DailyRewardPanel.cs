@@ -26,13 +26,13 @@ namespace Hyperbyte
     {
         int rewardAmount = 0;
 
-        #pragma warning disable 0649
+#pragma warning disable 0649
         [SerializeField] Text txtDay;
         [SerializeField] Text txtReward;
         [SerializeField] Image imgCheckmark;
         [SerializeField] Image imgCollectedBorder;
         [SerializeField] RectTransform GemsRewardPlacement;
-        #pragma warning restore 0649
+#pragma warning restore 0649
 
         /// <summary>
         /// Prepares daily reward for the day.
@@ -49,15 +49,10 @@ namespace Hyperbyte
 
                 if (day < currentRewardDay)
                 {
-                    imgCheckmark.SetColorWithThemeId("DCReward");
-                    imgCollectedBorder.SetColorWithThemeId("DCCollectBorder");
-
                     GetComponent<CanvasGroup>().alpha = 0.8F;
                 }
                 else
                 {
-                    imgCheckmark.SetColorWithThemeId("DCReward");
-                    imgCollectedBorder.SetColorWithThemeId("DCCollectBorder");
                     GetComponent<CanvasGroup>().alpha = 1F;
                     Invoke("AnimateAndProcessRewards", 1F);
                 }

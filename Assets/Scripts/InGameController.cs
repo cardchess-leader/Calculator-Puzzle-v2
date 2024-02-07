@@ -12,6 +12,11 @@ public class InGameController : MonoBehaviour
     public static InGameController instance;
     public static string hintTag = "Show Hint";
     public ParticleSystem confetti;
+    public AudioClip btnNormal;
+    public AudioClip btnResult;
+    public AudioClip btnError;
+    public AudioClip btnReset;
+    public List<AudioClip> stageClearClip;
     VisualElement root;
     VisualElement calculator;
     Label screenLabel;
@@ -20,7 +25,6 @@ public class InGameController : MonoBehaviour
     string optr;
     int inputCount = 0;
     bool isError = false;
-    public bool adFree;
     QuestionSO question;
     Dictionary<string, string> symbolToValue = new Dictionary<string, string>
     {
@@ -62,7 +66,7 @@ public class InGameController : MonoBehaviour
         InitializeCalc();
         ShowHintUI();
         UpdateCalcScreen();
-        Helper.SetHapticToBtn(root);
+        Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
     }
 
     void OnDisable()
@@ -193,6 +197,7 @@ public class InGameController : MonoBehaviour
                 GameManager.instance.SwitchPage("Level");
             }
         };
+        root.Q<Button>(className: "back-button").AddToClassList("ui-btn");
         root.Q<VisualElement>("Calculator").RegisterCallback<ClickEvent>(HandleCalcBtnClick);
         root.Q<Button>("Hint").clicked += OnHintBtnClick;
         root.Q<Button>("Continue").clicked += OnContinueBtnClick;
@@ -211,9 +216,15 @@ public class InGameController : MonoBehaviour
         else
         {
             GameManager.instance.targetLevel++;
-            gameObject.SetActive(false);
-            gameObject.SetActive(true);
+            StartCoroutine(MoveToNextStageCoroutine());
         }
+    }
+
+    IEnumerator MoveToNextStageCoroutine()
+    {
+        yield return null;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
     void InitializeCalc()
@@ -245,10 +256,11 @@ public class InGameController : MonoBehaviour
         {
             InitializeCalc();
             ShowHintUI();
+            PlayBtnPressFeedback("Reset");
         }
         else if (isError)
         {
-            return;
+            PlayBtnPressFeedback("Error");
         }
         else if (btnValue == "Equal")
         {
@@ -258,6 +270,33 @@ public class InGameController : MonoBehaviour
         {
             AppendInput(btnName);
             EvaluateExpression(btnValue);
+        }
+        else
+        {
+            PlayBtnPressFeedback("Error");
+        }
+    }
+
+    void PlayBtnPressFeedback(string status)
+    {
+        switch (status)
+        {
+            case "Normal":
+                UIFeedback.Instance.PlayHapticLight();
+                AudioController.Instance.PlayClip(btnNormal);
+                break;
+            case "Result":
+                UIFeedback.Instance.PlayHapticMedium();
+                AudioController.Instance.PlayClip(btnResult);
+                break;
+            case "Reset":
+                UIFeedback.Instance.PlayHapticMedium();
+                AudioController.Instance.PlayClip(btnReset);
+                break;
+            case "Error":
+                UIFeedback.Instance.PlayHapticMedium();
+                AudioController.Instance.PlayClip(btnError);
+                break;
         }
     }
 
@@ -364,6 +403,19 @@ public class InGameController : MonoBehaviour
         {
             CompareResultWithAnswer();
             UpdateCalcScreen();
+            if (isError)
+            {
+                PlayBtnPressFeedback("Error");
+            }
+            else if (symbol == "Equal")
+            {
+                PlayBtnPressFeedback("Result");
+            }
+            else
+            {
+                PlayBtnPressFeedback("Normal");
+
+            }
         }
     }
 
@@ -427,6 +479,7 @@ public class InGameController : MonoBehaviour
         root.Q("StageClear").Q("Section3").Add(scoreElement);
         GameManager.instance.ClearCurrentLevel(score);
         yield return new WaitForSeconds(0.5f);
+        AudioController.Instance.PlayClip(stageClearClip[score - 1]);
         confetti.Play();
     }
 

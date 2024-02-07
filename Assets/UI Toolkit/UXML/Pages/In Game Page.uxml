@@ -39,7 +39,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="Section3" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
         <ui:VisualElement name="Section4" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: center;">
-            <ui:Button text="Continue" display-tooltip-when-elided="true" name="Continue" style="background-color: rgb(254, 160, 10); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 800px; height: 200px; font-size: 80px; color: rgb(255, 255, 255); -unity-font-style: normal; border-top-left-radius: 100px; border-bottom-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px;" />
+            <ui:Button text="Continue" display-tooltip-when-elided="true" name="Continue" class="ui-btn" style="background-color: rgb(254, 160, 10); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 800px; height: 200px; font-size: 80px; color: rgb(255, 255, 255); -unity-font-style: normal; border-top-left-radius: 100px; border-bottom-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px;" />
         </ui:VisualElement>
         <ui:VisualElement name="Section5" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
     </ui:VisualElement>

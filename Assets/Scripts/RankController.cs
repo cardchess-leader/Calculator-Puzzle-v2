@@ -21,7 +21,7 @@ public class RankController : MonoBehaviour
         {
             PopupManager.instance.ShowPopup("RankProfileSetup");
         }
-        Helper.SetHapticToBtn(root);
+        Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
     }
 
     void InitializeHandler()
@@ -30,6 +30,7 @@ public class RankController : MonoBehaviour
         {
             GameManager.instance.SwitchPage("Main");
         };
+        root.Q<Button>(className: "back-button").AddToClassList("ui-btn");
         root.Q("PlayerStat").RegisterCallback<ClickEvent>(evt => PopupManager.instance.ShowPopup("RankProfileSetup"));
     }
 

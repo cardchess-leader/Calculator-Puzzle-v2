@@ -24,7 +24,7 @@ public class MainController : MonoBehaviour
         {
             root.Q<Button>("RankBtn").SetEnabled(false);
         }
-        Helper.SetHapticToBtn(root);
+        Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
     }
     void InitializeHandler()
     {

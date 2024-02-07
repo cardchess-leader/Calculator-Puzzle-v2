@@ -23,7 +23,7 @@ public class ShopController : MonoBehaviour
         InitializeCalculators();
         InitializeHandler();
         InitUI();
-        Helper.SetHapticToBtn(root);
+        Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
     }
     void Update()
     {
@@ -49,6 +49,7 @@ public class ShopController : MonoBehaviour
         {
             GameManager.instance.SwitchPage("Main");
         };
+        root.Q<Button>(className: "back-button").AddToClassList("ui-btn");
         root.Q("BottomButtonGroup").RegisterCallback<ClickEvent>(clickEvent =>
         {
             CalculatorSO calc = GameManager.instance.calculatorList[calcIndex];
@@ -130,7 +131,7 @@ public class ShopController : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log("e is: " + e);
+            Debug.Log(e);
         }
     }
 }

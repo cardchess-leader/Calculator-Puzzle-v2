@@ -23,7 +23,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-direction: column; flex-basis: 0;">
-                            <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayBtn" class="play-button" style="font-size: 90px; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                            <ui:Button text="Play" display-tooltip-when-elided="true" name="PlayBtn" class="play-button ui-btn" style="font-size: 90px; -unity-font-style: normal; color: rgb(255, 255, 255);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
@@ -33,7 +33,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
-                            <ui:Button text="Daily" display-tooltip-when-elided="true" name="DailyBtn" class="play-button" />
+                            <ui:Button text="Daily" display-tooltip-when-elided="true" name="DailyBtn" class="play-button ui-btn" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
@@ -43,7 +43,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
-                            <ui:Button text="Rank" display-tooltip-when-elided="true" name="RankBtn" class="play-button" />
+                            <ui:Button text="Rank" display-tooltip-when-elided="true" name="RankBtn" class="play-button ui-btn" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="Row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; height: auto; flex-basis: 0;">
@@ -53,24 +53,24 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                            <ui:Button text="Shop" display-tooltip-when-elided="true" name="ShopBtn" class="play-button" />
+                            <ui:Button text="Shop" display-tooltip-when-elided="true" name="ShopBtn" class="play-button ui-btn" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
                     <ui:VisualElement name="VisualElement" style="flex-grow: 2; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
                         <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(254, 160, 10); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100px; border-bottom-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; flex-basis: 0;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAdsBtn" class="no-ads-btn" style="background-image: url(&apos;project://database/Assets/Hyperbyte/BlockPuzzle/Textures/no-ads.png?fileID=2800000&amp;guid=3d153b82fe139472f9f6ae9a6730a5cf&amp;type=3#no-ads&apos;);" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAdsBtn" class="no-ads-btn ui-btn" style="background-image: url(&apos;project://database/Assets/Hyperbyte/BlockPuzzle/Textures/no-ads.png?fileID=2800000&amp;guid=3d153b82fe139472f9f6ae9a6730a5cf&amp;type=3#no-ads&apos;);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
                         <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(254, 160, 10); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="RatingBtn" class="rating-btn" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="RatingBtn" class="rating-btn ui-btn" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-basis: 0;">
                         <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(254, 160, 10); margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 100%; border-bottom-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; flex-basis: 0;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsBtn" class="settings-btn" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsBtn" class="settings-btn ui-btn" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

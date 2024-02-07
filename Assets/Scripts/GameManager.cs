@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int dailyScore;
     public int targetLevel;
     public bool isDaily;
-    public bool locked;
+    public AudioClip uiBtnClickSound;
     GameObject activePage;
     void Awake()
     {
@@ -103,6 +103,11 @@ public class GameManager : MonoBehaviour
     }
     public void SwitchPage(string targetPage)
     {
+        StartCoroutine(SwitchPageCoroutine(targetPage));
+    }
+    IEnumerator SwitchPageCoroutine(string targetPage)
+    {
+        yield return null;
         activePage.SetActive(false);
         switch (targetPage)
         {

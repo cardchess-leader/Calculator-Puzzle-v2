@@ -18,7 +18,7 @@ public class LevelController : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         InitializeQuestionRows();
         InitializeHandler();
-        Helper.SetHapticToBtn(root);
+        Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
     }
 
     void Update()
@@ -34,6 +34,7 @@ public class LevelController : MonoBehaviour
         {
             GameManager.instance.SwitchPage("Main");
         };
+        root.Q<Button>(className: "back-button").AddToClassList("ui-btn");
         root.Q<ScrollViewPro>().RegisterCallback<ClickEvent>(evt => OpenLevel(evt));
     }
 
@@ -115,6 +116,7 @@ public class LevelController : MonoBehaviour
                 }
             }
             cellElement.Q<VisualElement>("Cell").userData = i;
+            cellElement.AddToClassList("ui-btn");
             questionRow.Add(cellElement);
 
             if (i % 5 == 4)

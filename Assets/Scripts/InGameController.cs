@@ -62,6 +62,7 @@ public class InGameController : MonoBehaviour
         InitializeCalc();
         ShowHintUI();
         UpdateCalcScreen();
+        Helper.SetHapticToBtn(root);
     }
 
     void OnDisable()

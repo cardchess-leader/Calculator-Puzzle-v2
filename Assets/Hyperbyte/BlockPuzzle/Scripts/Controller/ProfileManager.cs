@@ -254,21 +254,5 @@ namespace Hyperbyte
         {
             return isUserAdFree;
         }
-
-        /// <summary>
-        /// Returns best score for the given mode.
-        /// </summary>
-        public int GetBestScore(GameMode gameMode)
-        {
-            return PlayerPrefs.GetInt("bestScore_" + gameMode, 0);
-        }
-
-        /// <summary>
-        /// Saves best for the give mode.
-        /// </summary>
-        public void SetBestScore(int score, GameMode gameMode)
-        {
-            PlayerPrefs.SetInt("bestScore_" + gameMode, score);
-        }
     }
 }

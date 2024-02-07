@@ -74,20 +74,6 @@ public class LeaderBoardController : MonoBehaviour
         // Debug.Log(JsonConvert.SerializeObject(playerEntry));
     }
 
-    // public async Task UpdateProfile(string nickname, string country)
-    // {
-    //     int totalScore = GameManager.instance.GetTotalScore();
-    //     Task updateTotalScoreTask = LeaderboardsService.Instance.AddPlayerScoreAsync(
-    //         "Total_Score",
-    //         totalScore,
-    //         new AddPlayerScoreOptions
-    //         {
-    //             Metadata = new Dictionary<string, string>() { { "nickname", nickname }, { "country", country } }
-    //         }
-    //     );
-    //     await Task.WhenAll(updateTotalScoreTask);
-    // }
-
     public async Task<List<ScoreEntry>> GetTop100Rank()
     {
         try
@@ -101,7 +87,7 @@ public class LeaderBoardController : MonoBehaviour
                 PlayerId = scoreRawEntry.PlayerId,
                 Score = (int)float.Parse(scoreRawEntry.Score),
                 Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
-                Metadata = scoreRawEntry.Metadata == null ? (new Dictionary<string, string>() { { "nickname", "Anonymous" }, { "country", "UN" } }) : JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata) // Corrected case and method
+                Metadata = JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata)
             }).ToList();
 
             return scoreEntries;
@@ -124,7 +110,7 @@ public class LeaderBoardController : MonoBehaviour
                 PlayerId = scoreRawEntry.PlayerId,
                 Score = (int)float.Parse(scoreRawEntry.Score),
                 Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
-                Metadata = scoreRawEntry.Metadata == null ? (new Dictionary<string, string>() { { "nickname", "Anonymous" }, { "country", "UN" } }) : JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata) // Corrected case and method
+                Metadata = JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata)
             };
         }
         catch (System.Exception e)

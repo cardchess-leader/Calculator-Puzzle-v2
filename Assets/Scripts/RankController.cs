@@ -16,14 +16,12 @@ public class RankController : MonoBehaviour
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         InitializeHandler();
-        if (GameManager.instance.IsRankProfileSet())
-        {
-            ShowRanks();
-        }
-        else
+        ShowRanks();
+        if (!GameManager.instance.IsRankProfileSet())
         {
             PopupManager.instance.ShowPopup("RankProfileSetup");
         }
+        Helper.SetHapticToBtn(root);
     }
 
     void InitializeHandler()
@@ -32,6 +30,7 @@ public class RankController : MonoBehaviour
         {
             GameManager.instance.SwitchPage("Main");
         };
+        root.Q("PlayerStat").RegisterCallback<ClickEvent>(evt => PopupManager.instance.ShowPopup("RankProfileSetup"));
     }
 
     public async void ShowRanks()

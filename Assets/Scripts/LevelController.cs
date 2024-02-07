@@ -18,6 +18,7 @@ public class LevelController : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         InitializeQuestionRows();
         InitializeHandler();
+        Helper.SetHapticToBtn(root);
     }
 
     void Update()
@@ -72,7 +73,6 @@ public class LevelController : MonoBehaviour
             else if (GameManager.instance.GetScoreAtIndex(i) == 0)
             {
                 cellElement = Resources.Load<VisualTreeAsset>($"Level Cell/cell_number").CloneTree().Q("Cell");
-                Debug.Log(cellElement == null);
                 (cellElement as Button).text = (i + 1).ToString();
                 if (i == unsolvedIndex)
                 {

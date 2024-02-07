@@ -23,6 +23,7 @@ public class ShopController : MonoBehaviour
         InitializeCalculators();
         InitializeHandler();
         InitUI();
+        Helper.SetHapticToBtn(root);
     }
     void Update()
     {

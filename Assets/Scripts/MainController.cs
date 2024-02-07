@@ -24,6 +24,7 @@ public class MainController : MonoBehaviour
         {
             root.Q<Button>("RankBtn").SetEnabled(false);
         }
+        Helper.SetHapticToBtn(root);
     }
     void InitializeHandler()
     {

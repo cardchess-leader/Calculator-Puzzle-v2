@@ -21,7 +21,7 @@ namespace Hyperbyte
 	public class AppSettings : ScriptableObject
 	{
 		#region CommonSettings
-		
+
 		// Android store like google, amazon, samsung etc.
 		public int currentAndroidStore = 0;
 
@@ -36,7 +36,7 @@ namespace Hyperbyte
 
 		// Apple Id to nevigate to store.
 		public string appleID;
-		
+
 		#endregion
 
 
@@ -68,23 +68,20 @@ namespace Hyperbyte
 
 		// Store revire url samsung store.
 		public string samsungReviewURL = "";
-		
+
 		#endregion
 
 		// Vibration permission should be added to android manifest.
 		public bool enableVibrations = true;
-		
+
 		#region InventorySettings
 
 		// Default amount of gems at starting of game.
 		public int defaultGemsAmount = 240;
-		
+
 		// Free gems reward on watching rewaerded video.
 		public int watchVideoRewardAmount = 35;
 
-		// Gems amout to rescue game.
-		public int rescueGameGemsAmount = 35;
-		
 		#endregion
 
 		#region DailyRewards
@@ -96,11 +93,12 @@ namespace Hyperbyte
 		public DailyRewardSettings dailyRewardsSettings;
 		#endregion
 	}
-}	
+}
 
 [System.Serializable]
-public class DailyRewardSettings {
-	
+public class DailyRewardSettings
+{
+
 	// Reward on each days. Add as many days as you want with reward amount. Will keep repeating.
 	public int[] allDayRewards;
 }

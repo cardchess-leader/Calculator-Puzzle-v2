@@ -28,11 +28,6 @@ namespace Hyperbyte
 
         [SerializeField] Canvas UICanvas;
 
-        [Header("UI Screens")]
-        public HomeScreen homeScreen;
-        public GamePlayUI gameScreen;
-        public Hyperbyte.Tutorial.GamePlayUI gameScreen_Tutorial;
-
         [Header("Public Members.")]
         public GameObject shopScreen;
         public GameObject settingScreen;
@@ -61,8 +56,6 @@ namespace Hyperbyte
         // Ordered popup stack is used when another popup tries to open when already a popup is opened. Ordered stack will control it and add upcoming popups
         // to queue so it will load automatically when alreay existing popup gets closed.
         List<string> orderedPopupStack = new List<string>();
-
-        [System.NonSerialized] public GameMode cachedSelectedMode = GameMode.Classic;
 
         /// <summary>
 		/// Awake is called when the script instance is being loaded.
@@ -261,15 +254,6 @@ namespace Hyperbyte
                     lanagueSelectionScreen.Deactivate();
                     break;
 
-                case "PauseGame":
-                    pauseGameScreen.Deactivate();
-                    break;
-
-                case "RescueGame":
-                    GamePlayUI.Instance.OnRescueCancelled();
-                    rescueGameScreen.Deactivate();
-                    break;
-
                 case "ShowHintWithAd":
                     showHintWithAdScreen.Deactivate();
                     break;
@@ -425,80 +409,6 @@ namespace Hyperbyte
                         break;
                 }
             }
-        }
-
-        /// <summary>
-        /// Disables home and select mode screen and opens gameplay.
-        /// </summary>
-        public void LoadGamePlay(GameMode gameMode)
-        {
-            bool showTutorial = false;
-
-            if (!PlayerPrefs.HasKey("tutorialShown"))
-            {
-                GamePlaySettings gamePlaySettings = (GamePlaySettings)Resources.Load("GamePlaySettings");
-                showTutorial = gamePlaySettings.tutorialModeSettings.modeEnabled;
-
-                if (!showTutorial)
-                {
-                    PlayerPrefs.SetInt("tutorialShown", 1);
-                }
-            }
-
-            homeScreen.gameObject.Deactivate();
-            if (showTutorial)
-            {
-                gameScreen_Tutorial.gameObject.Activate();
-                cachedSelectedMode = gameMode;
-            }
-            else
-            {
-                gameScreen.gameObject.Activate();
-                gameScreen.GetComponent<GamePlayUI>().StartGamePlay(gameMode);
-            }
-        }
-
-        public bool IsGamePlay()
-        {
-            if (Peek().Equals(gameScreen.name))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Open Home screen when user presses home button from gameover screen.
-        /// </summary>
-        public void OpenHomeScreenFromGameOver()
-        {
-            StartCoroutine(OpenHomeScreenFromGameOverCoroutine());
-        }
-
-        IEnumerator OpenHomeScreenFromGameOverCoroutine()
-        {
-            GamePlayUI.Instance.ResetGame();
-            yield return new WaitForSeconds(0.1f);
-            gameScreen.gameObject.Deactivate();
-            gameOverScreen.Deactivate();
-            homeScreen.gameObject.Activate();
-        }
-
-        /// <summary>
-        /// Open Home screen when user presses home button from pause screen during gameplay.
-        /// </summary>
-        public void OpenHomeScreenFromPauseGame()
-        {
-            StartCoroutine(OpenHomeScreenFromPauseGameCoroutine());
-        }
-
-        IEnumerator OpenHomeScreenFromPauseGameCoroutine()
-        {
-            GamePlayUI.Instance.ResetGame();
-            yield return new WaitForSeconds(0.1f);
-            gameScreen.gameObject.Deactivate();
-            pauseGameScreen.Deactivate();
-            homeScreen.gameObject.Activate();
         }
 
         /// <summary>

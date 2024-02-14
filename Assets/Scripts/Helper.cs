@@ -1,13 +1,62 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Hyperbyte;
-
 public class Helper
 {
     public static List<string> CtryCodeList = new List<string> { "UN", "AF", "AL", "DZ", "AD", "AO", "AG", "AR", "AM", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BT", "BO", "BA", "BW", "BR", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CF", "TD", "CL", "CN", "CO", "KM", "CG", "CR", "HR", "CU", "CY", "CZ", "CD", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FJ", "FI", "FR", "GA", "GM", "GE", "DE", "GH", "GR", "GD", "GT", "GN", "GW", "GY", "HT", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IL", "IT", "CI", "JM", "JP", "JO", "KZ", "KE", "KI", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MC", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MR", "MU", "MX", "FM", "MD", "MN", "ME", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NZ", "NI", "NE", "NG", "KP", "MK", "NO", "OM", "PK", "PW", "PA", "PG", "PY", "PE", "PH", "PL", "PT", "QA", "RO", "RU", "RW", "KN", "LC", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SK", "SI", "SB", "SO", "ZA", "KR", "SS", "ES", "LK", "SD", "SR", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TO", "TT", "TN", "TR", "TM", "TV", "UG", "UA", "AE", "GB", "US", "UY", "UZ", "VU", "VA", "VE", "VN", "YE", "ZM", "ZW" };
+
+    public static Vector2 GetAbsoluteScreenPosition(VisualElement element)
+    {
+        // Get the position of the element relative to the top-left corner
+        Vector2 positionFromTopLeft = new Vector2(element.worldBound.x, element.worldBound.y);
+
+        // Flip the Y-coordinate to make the bottom-left corner as the origin
+        float flippedY = Screen.height - positionFromTopLeft.y; // Subtracting the element's height to adjust for its own size
+        // float flippedY = Screen.height - positionFromTopLeft.y; // Subtracting the element's height to adjust for its own size
+
+        // return new Vector2(positionFromTopLeft.x + element.worldBound.width / 2, flippedY - element.worldBound.height / 2);
+        return new Vector2(positionFromTopLeft.x + element.worldBound.width / 2, flippedY - element.worldBound.height / 2);
+    }
+
+
+    public static bool RoundEpsilon(float input)
+    {
+        if (Mathf.Abs(Mathf.Round(input) - input) < 0.000001f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static float RoundEpsilonResult(float input)
+    {
+        if (RoundEpsilon(input))
+        {
+            return Mathf.Round(input);
+        }
+        return input;
+    }
+
+    public static bool IsDecimal(string input)
+    {
+        // Regular expression to match the pattern
+        // ^ - asserts position at start of the string
+        // \d+ - matches one or more digits
+        // \. - matches the literal "."
+        // 0+ - matches one or more "0" characters
+        // $ - asserts position at the end of the string
+        string pattern = @"^\d+\.\d+$";
+
+        // Use Regex.IsMatch to check if the input matches the pattern
+        return Regex.IsMatch(input, pattern);
+    }
 
     public static void SetHapticToBtn(VisualElement root, string className, bool isPointerDown, AudioClip audioClip = null)
     {

@@ -17,6 +17,7 @@ public class InGameController : MonoBehaviour
     public AudioClip btnError;
     public AudioClip btnReset;
     public List<AudioClip> stageClearClip;
+    public RectTransform gemIcon;
     VisualElement root;
     VisualElement calculator;
     Label screenLabel;
@@ -26,6 +27,7 @@ public class InGameController : MonoBehaviour
     int inputCount = 0;
     bool isError = false;
     QuestionSO question;
+    bool lockAllCalcInputs;
     Dictionary<string, string> symbolToValue = new Dictionary<string, string>
     {
         { "Zero", "0" },
@@ -57,6 +59,7 @@ public class InGameController : MonoBehaviour
 
     void OnEnable()
     {
+        lockAllCalcInputs = false;
         instance = this;
         root = GetComponent<UIDocument>().rootVisualElement;
         AdManager.OnRewardedAdRewardedEvent += OnRewardedAdRewarded;
@@ -71,8 +74,8 @@ public class InGameController : MonoBehaviour
 
     void OnDisable()
     {
-        instance = null;
         AdManager.OnRewardedAdRewardedEvent -= OnRewardedAdRewarded;
+        gemIcon.transform.parent.gameObject.SetActive(false);
     }
 
     void OnHintBtnClick()
@@ -205,6 +208,7 @@ public class InGameController : MonoBehaviour
 
     void OnContinueBtnClick()
     {
+        gemIcon.transform.parent.gameObject.SetActive(false);
         if (!ProfileManager.Instance.IsAppAdFree() && AdManager.Instance.IsInterstitialAvailable())
         {
             AdManager.Instance.ShowInterstitial();
@@ -246,6 +250,10 @@ public class InGameController : MonoBehaviour
 
     void HandleCalcBtnClick(ClickEvent evt)
     {
+        if (lockAllCalcInputs)
+        {
+            return;
+        }
         VisualElement element = evt.target as VisualElement;
         if (!(element is Button) || element.userData != null)
         {
@@ -372,7 +380,11 @@ public class InGameController : MonoBehaviour
             {
                 if (optr == "")
                 {
-                    if (float.TryParse(result + symbol, out float newValue))
+                    if (Helper.IsDecimal(result + symbol))
+                    {
+                        result = result + symbol;
+                    }
+                    else if (float.TryParse(result + symbol, out float newValue))
                     {
                         result = symbol == "." ? result + symbol : newValue.ToString();
                     }
@@ -383,7 +395,11 @@ public class InGameController : MonoBehaviour
                 }
                 else
                 {
-                    if (float.TryParse(tempResult + symbol, out float newValue))
+                    if (Helper.IsDecimal(tempResult + symbol))
+                    {
+                        tempResult = tempResult + symbol;
+                    }
+                    else if (float.TryParse(tempResult + symbol, out float newValue))
                     {
                         tempResult = symbol == "." ? tempResult + symbol : newValue.ToString();
                     }
@@ -457,12 +473,14 @@ public class InGameController : MonoBehaviour
     {
         if (question.goalNum.ToString() == result)
         {
+            lockAllCalcInputs = true;
             StartCoroutine(OnStageClearCoroutine());
         }
     }
 
     IEnumerator OnStageClearCoroutine()
     {
+        yield return new WaitForSeconds(0.5f);
         root.Q("StageClear").RemoveFromClassList("hidden");
         if (GameManager.instance.isDaily)
         {
@@ -478,9 +496,14 @@ public class InGameController : MonoBehaviour
         VisualElement scoreElement = Resources.Load<VisualTreeAsset>($"Score/Score {score}").CloneTree();
         root.Q("StageClear").Q("Section3").Add(scoreElement);
         GameManager.instance.ClearCurrentLevel(score);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
+        gemIcon.transform.parent.gameObject.SetActive(true);
+        gemIcon.transform.parent.Find("Gem Gain Amount").GetComponent<UnityEngine.UI.Text>().text = GameManager.instance.isDaily ? "x150" : "x100";
+        yield return new WaitForSeconds(0.2f);
         AudioController.Instance.PlayClip(stageClearClip[score - 1]);
         confetti.Play();
+        UIController.Instance.PlayAddGemsAnimationAtPosition(gemIcon.position, 0);
+        CurrencyManager.Instance.AddGems(GameManager.instance.isDaily ? 150 : 100);
     }
 
     float GetBinaryOptrResult(float operand1, float operand2, string optr)
@@ -492,9 +515,9 @@ public class InGameController : MonoBehaviour
             case "Minus":
                 return operand1 - operand2;
             case "Multiply":
-                return operand1 * operand2;
+                return Helper.RoundEpsilonResult(operand1 * operand2);
             case "Divide":
-                return operand1 / operand2;
+                return Helper.RoundEpsilonResult(operand1 / operand2);
             case "Pow":
                 return Mathf.Pow(operand1, operand2);
         }

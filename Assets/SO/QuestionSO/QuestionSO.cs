@@ -38,8 +38,11 @@ public class QuestionSO : ScriptableObject
         Pow,
         Factorial,
         Inverse,
-        Round
+        Round,
+        Dot
     }
+    public string author;
+    public int authorQuestionNo;
     public Difficulty difficulty;
     public float initialNum;
     public float goalNum;

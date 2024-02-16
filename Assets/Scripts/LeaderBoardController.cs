@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
+using Hyperbyte;
 
 public class ScoreRawEntry
 {
@@ -54,10 +56,47 @@ public class LeaderBoardController : MonoBehaviour
     }
     async void Authenticate()
     {
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        authenticated = true;
-        MainController.instance.EnableRankBtn();
-        await GetPlayerScore();
+        List<Notification> notifications = null;
+        try
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            authenticated = true;
+            MainController.instance.EnableRankBtn();
+            await GetPlayerScore();
+
+            // From hereafter, the notification part begins:
+            // Verify the LastNotificationDate
+            var lastNotificationDate = AuthenticationService.Instance.LastNotificationDate;
+            long storedNotificationDate = GetLastNotificationReadDate(); // Retrieve the last notification read createdAt date from storage using GetLastNotificationReadDate();
+            // Verify if the LastNotification date is available and greater than the last read notifications
+            if (lastNotificationDate != null && long.Parse(lastNotificationDate) > storedNotificationDate)
+            {
+                // Retrieve the notifications from the backend
+                notifications = await AuthenticationService.Instance.GetNotificationsAsync();
+            }
+        }
+        catch (AuthenticationException e)
+        {
+            // Read notifications from the banned player exception
+            notifications = e.Notifications;
+            // Notify the player with the proper error message
+            Debug.LogException(e);
+        }
+        catch (Exception e)
+        {
+            // Notify the player with the proper error message
+            Debug.LogException(e);
+        }
+
+        if (notifications != null)
+        {
+            foreach (var notification in notifications)
+            {
+                // Assuming 'Message' is the property name where the notification's message is stored
+                // Display notifications
+                UIController.Instance.ShowMessage("Notification", $"{notification.Message}");
+            }
+        }
     }
 
     public async Task UpdateScore()
@@ -141,5 +180,34 @@ public class LeaderBoardController : MonoBehaviour
         {
             Debug.Log("Player session could not be refreshed and expired.");
         };
+    }
+
+    void SaveNotificationReadDate(long notificationReadDate)
+    {
+        // Store the notificationReadDate using PlayerPrefs
+        PlayerPrefs.SetString("LastNotificationReadDate", notificationReadDate.ToString());
+        PlayerPrefs.Save(); // Make sure to save PlayerPrefs changes
+    }
+
+    long GetLastNotificationReadDate()
+    {
+        // Retrieve the notificationReadDate that was stored
+        string storedDate = PlayerPrefs.GetString("LastNotificationReadDate", "0"); // Default to "0" if not found
+        long lastNotificationReadDate;
+        if (long.TryParse(storedDate, out lastNotificationReadDate))
+        {
+            return lastNotificationReadDate;
+        }
+        return 0; // Return 0 if there was an issue parsing the stored value
+    }
+
+    void OnNotificationRead(Notification notification)
+    {
+        long storedNotificationDate = GetLastNotificationReadDate(); // Retrieve the last notification read createdAt date from storage GetLastNotificationReadDate();
+        var notificationDate = long.Parse(notification.CreatedAt);
+        if (notificationDate > storedNotificationDate)
+        {
+            SaveNotificationReadDate(notificationDate);
+        }
     }
 }

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int targetLevel;
     public bool isDaily;
     public AudioClip uiBtnClickSound;
+    public GameObject connectionLostOverlay;
     GameObject activePage;
     void Awake()
     {
@@ -26,6 +27,23 @@ public class GameManager : MonoBehaviour
     {
         activePage = mainPage;
         mainPage.SetActive(true);
+        StartCoroutine(CheckForInternetConnection(1));
+    }
+    IEnumerator CheckForInternetConnection(float intervalInSeconds)
+    {
+        // Check the internet connectivity
+        switch (Application.internetReachability)
+        {
+            case NetworkReachability.NotReachable:
+                connectionLostOverlay.SetActive(true);
+                break;
+            case NetworkReachability.ReachableViaCarrierDataNetwork:
+            case NetworkReachability.ReachableViaLocalAreaNetwork:
+                connectionLostOverlay.SetActive(false);
+                break;
+        }
+        yield return new WaitForSeconds(intervalInSeconds);
+        StartCoroutine(CheckForInternetConnection(intervalInSeconds));
     }
     public void EquipCalculator(int calcIndex)
     {

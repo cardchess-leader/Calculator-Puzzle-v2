@@ -290,19 +290,26 @@ public class InGameController : MonoBehaviour
         switch (status)
         {
             case "Normal":
-                UIFeedback.Instance.PlayHapticLight();
+                if (lockAllCalcInputs)
+                {
+                    UIFeedback.Instance.PlayHapticMedium();
+                }
+                else
+                {
+                    UIFeedback.Instance.PlayHapticHeavy();
+                }
                 AudioController.Instance.PlayClip(btnNormal);
                 break;
             case "Result":
-                UIFeedback.Instance.PlayHapticMedium();
+                UIFeedback.Instance.PlayHapticHeavy();
                 AudioController.Instance.PlayClip(btnResult);
                 break;
             case "Reset":
-                UIFeedback.Instance.PlayHapticMedium();
+                UIFeedback.Instance.PlayHapticHeavy();
                 AudioController.Instance.PlayClip(btnReset);
                 break;
             case "Error":
-                UIFeedback.Instance.PlayHapticMedium();
+                UIFeedback.Instance.PlayHapticHeavy();
                 AudioController.Instance.PlayClip(btnError);
                 break;
         }

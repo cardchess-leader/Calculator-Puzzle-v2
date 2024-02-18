@@ -6,6 +6,53 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "QuestionSO", menuName = "Calculator-Puzzle/QuestionSO", order = 0)]
 public class QuestionSO : ScriptableObject
 {
+    public enum Tag
+    {
+        Add,
+        Add_Decimal,
+        Add_Divide,
+        Add_Factorial,
+        Add_Log,
+        Add_Percent,
+        Add_Power,
+        Append,
+        Append_Inverse,
+        Append_Sqrt,
+        Factorial,
+        Factorial_Append,
+        Factorial_Multiply,
+        Inverse,
+        Inverse_Add,
+        Inverse_Multiply,
+        Inverse_Power,
+        Log,
+        Log_Append,
+        Log_Round,
+        Multiply,
+        Multiply_Divide,
+        Multiply_Power,
+        Multiply_Sqrt,
+        Multiply_Zero,
+        Other,
+        Percent,
+        Percent_Append,
+        Percent_Sqrt,
+        Power,
+        Power_Append,
+        Power_Multiply,
+        Power_Sqrt,
+        Power_Zero,
+        Round,
+        Round_Add,
+        Round_Append,
+        Sqrt,
+        Sqrt_Add,
+        Sqrt_Append,
+        Sqrt_Round,
+        // New Tags From Below //
+        Inverse_Percent, // Also Includes Inverse_Sqrt
+        Add_Sqrt,
+    }
     public enum Difficulty
     {
         Easy,
@@ -41,9 +88,14 @@ public class QuestionSO : ScriptableObject
         Round,
         Dot
     }
+    // from hereafter metadata
     public string author;
     public int authorQuestionNo;
+    public bool isDaily;
     public Difficulty difficulty;
+    public Tag tag;
+    public int version;
+    // end of metadata
     public float initialNum;
     public float goalNum;
     public List<Symbol> answer;

@@ -34,6 +34,7 @@ public class QuestionSO : ScriptableObject
         Multiply_Add,
         Multiply_Append,
         Multiply_Divide,
+        Multiply_Inverse,
         Multiply_Power,
         Multiply_Round,
         Multiply_Sqrt,
@@ -107,7 +108,7 @@ public class QuestionSO : ScriptableObject
     // end of metadata
     public float initialNum;
     public float goalNum;
-    public List<Symbol> answer;
+    public List<Symbol> answer; // for recording purpose
     public List<Symbol> lockedSymbols;
     public List<Symbol> swapFromSymbols;
     public List<Symbol> swapToSymbols;

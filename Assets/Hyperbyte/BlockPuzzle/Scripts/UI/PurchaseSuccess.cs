@@ -13,8 +13,8 @@
 
 using UnityEngine;
 
-namespace Hyperbyte 
-{   
+namespace Hyperbyte
+{
     /// <summary>
     /// This script is attached to purchase success popup.
     /// </summary>
@@ -25,28 +25,33 @@ namespace Hyperbyte
         /// <summary>
         /// This function is called when the behaviour becomes enabled or active.
         /// </summary>
-        private void OnEnable() {
-            UIController.Instance.PlayAddGemsAnimationAtPosition(Vector3.zero, 0.2F);
+        private void OnEnable()
+        {
+            UIController.Instance.PlayAddGemsAnimationAtPosition(rewardAnimPosition.position, 0.2F);
         }
 
         /// <summary>
         /// Close button click listener.
         /// </summary>
-        public void OnCloseButtonPressed() {
-			if(InputManager.Instance.canInput()) {
+        public void OnCloseButtonPressed()
+        {
+            if (InputManager.Instance.canInput())
+            {
                 UIFeedback.Instance.PlayButtonPressEffect();
-				gameObject.Deactivate();
-			}
-		}
+                gameObject.Deactivate();
+            }
+        }
 
         /// <summary>
         /// Ok button click listener.
         /// </summary>
-        public void OnOkButtonPressed() {
-			if(InputManager.Instance.canInput()) {
+        public void OnOkButtonPressed()
+        {
+            if (InputManager.Instance.canInput())
+            {
                 UIFeedback.Instance.PlayButtonPressEffect();
-				gameObject.Deactivate();
-			}
-		}
+                gameObject.Deactivate();
+            }
+        }
     }
 }

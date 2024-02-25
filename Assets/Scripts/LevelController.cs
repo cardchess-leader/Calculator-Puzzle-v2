@@ -8,17 +8,28 @@ using Kamgam.UIToolkitScrollViewPro;
 
 public class LevelController : MonoBehaviour
 {
+    public static LevelController instance;
     public GameObject mainPage;
     public GameObject noAdsPurchasePopup;
+    public bool showNoAdsPurchasePopup;
     VisualElement root;
     float time;
     int pageIndex = 0;
+    void Awake()
+    {
+        instance = this;
+    }
     void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         InitializeQuestionRows();
         InitializeHandler();
         Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
+        if (showNoAdsPurchasePopup)
+        {
+            showNoAdsPurchasePopup = false;
+            noAdsPurchasePopup.Activate();
+        }
     }
 
     void Update()
@@ -134,22 +145,22 @@ public class LevelController : MonoBehaviour
         {
             case 0:
                 title1.text = "Easy + SCORE";
-                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Easy)}";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Easy)}/{GameManager.instance.GetMaxScoreSumForDifficulty(QuestionSO.Difficulty.Easy)}";
                 title2.style.color = new StyleColor(new Color(0.435f, 1, 0, 1));
                 break;
             case 1:
                 title1.text = "Medium + SCORE";
-                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Medium)}";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Medium)}/{GameManager.instance.GetMaxScoreSumForDifficulty(QuestionSO.Difficulty.Medium)}";
                 title2.style.color = new StyleColor(new Color(1, 0.616f, 0, 1));
                 break;
             case 2:
                 title1.text = "Hard + SCORE";
-                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Hard)}";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Hard)}/{GameManager.instance.GetMaxScoreSumForDifficulty(QuestionSO.Difficulty.Hard)}";
                 title2.style.color = new StyleColor(new Color(1, 0, 0.333f, 1));
                 break;
             case 3:
                 title1.text = "Expert + SCORE";
-                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Expert)}";
+                title2.text = $"= {GameManager.instance.GetScoreAtDifficulty(QuestionSO.Difficulty.Expert)}/{GameManager.instance.GetMaxScoreSumForDifficulty(QuestionSO.Difficulty.Expert)}";
                 title2.style.color = new StyleColor(new Color(0.333f, 0, 1, 1));
                 break;
         }

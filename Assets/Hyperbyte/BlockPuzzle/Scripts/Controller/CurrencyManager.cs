@@ -23,6 +23,7 @@ namespace Hyperbyte
     public class CurrencyManager : Singleton<CurrencyManager>
     {
         public static event Action<int> OnCurrencyUpdated;
+        public RectTransform freeGemAnimPos;
 
         int currentBalance;
         bool hasInitialised = false;
@@ -88,7 +89,8 @@ namespace Hyperbyte
         /// </summary>
         public void AddGems(int gemsAmount)
         {
-            if (gemsAmount > 0) {
+            if (gemsAmount > 0)
+            {
                 currentBalance += gemsAmount;
             }
             SaveCurrencyBalance();
@@ -109,7 +111,8 @@ namespace Hyperbyte
                 currentBalance -= gemsAmount;
                 SaveCurrencyBalance();
 
-                if (OnCurrencyUpdated != null) {
+                if (OnCurrencyUpdated != null)
+                {
                     OnCurrencyUpdated.Invoke(currentBalance);
                 }
                 return true;
@@ -130,11 +133,13 @@ namespace Hyperbyte
         /// </summary>
         void OnRewardedAdRewarded(string tag)
         {
-            switch(tag) {
+            switch (tag)
+            {
                 case "FreeGems":
-                AddGems(ProfileManager.Instance.GetAppSettings().watchVideoRewardAmount);
-                UIController.Instance.purchaseSuccessScreen.Activate();
-                break;
+                    AddGems(ProfileManager.Instance.GetAppSettings().watchVideoRewardAmount);
+                    UIController.Instance.purchaseSuccessScreen.Activate();
+                    UIController.Instance.purchaseSuccessScreen.GetComponent<PurchaseSuccess>().rewardAnimPosition = freeGemAnimPos;
+                    break;
             }
         }
     }

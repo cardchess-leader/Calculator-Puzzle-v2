@@ -227,8 +227,20 @@ public class InGameController : MonoBehaviour
     IEnumerator MoveToNextStageCoroutine()
     {
         yield return null;
-        gameObject.SetActive(false);
-        gameObject.SetActive(true);
+        if (GameManager.instance.IsLevelLocked(GameManager.instance.targetLevel))
+        {
+            LevelController.instance.showNoAdsPurchasePopup = true;
+            GameManager.instance.SwitchPage("Level");
+        }
+        else if (!GameManager.instance.IsLevelAvailable(GameManager.instance.targetLevel))
+        {
+            GameManager.instance.SwitchPage("Main");
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+        }
     }
 
     void InitializeCalc()

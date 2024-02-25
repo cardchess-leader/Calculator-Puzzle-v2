@@ -267,6 +267,10 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+        else if (level >= questionList.Count)
+        {
+            return false;
+        }
         return true;
     }
     public bool IsLevelLocked(int level)
@@ -326,5 +330,10 @@ public class GameManager : MonoBehaviour
     public Dictionary<string, string> GetPlayerProfile()
     {
         return new Dictionary<string, string>() { { "nickname", PlayerPrefs.GetString("nickname") }, { "country", PlayerPrefs.GetString("country") } };
+    }
+
+    public int GetMaxScoreSumForDifficulty(QuestionSO.Difficulty difficulty)
+    {
+        return 3 * questionList.Count(question => question.difficulty == difficulty);
     }
 }

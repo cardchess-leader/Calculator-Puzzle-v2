@@ -37,7 +37,7 @@ namespace Hyperbyte
         /// </summary>
         private void Start()
         {
-            dataSettingsOption.SetActive((PlayerPrefs.GetInt("ConsentRequired", 0) == 0) ? false : true);
+            // dataSettingsOption.SetActive((PlayerPrefs.GetInt("ConsentRequired", 0) == 0) ? false : true);
             supportButton.SetActive((ProfileManager.Instance.GetAppSettings().enableSupportURL) ? true : false);
             vibrationToggleButton.SetActive((ProfileManager.Instance.GetAppSettings().enableVibrations) ? true : false);
 

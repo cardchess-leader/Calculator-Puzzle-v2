@@ -422,19 +422,8 @@ namespace Hyperbyte
 
         public void PlayAddGemsAnimationAtPosition(Vector3 position, float delay)
         {
-            Debug.Log("PlayAddGemsAnimationAtPosition: " + position);
             GameObject rewardAnim = (GameObject)Instantiate(Resources.Load("RewardAnimation")) as GameObject;
             rewardAnim.transform.SetParent(RuntimeEffectSpawnParent);
-            rewardAnim.GetComponent<RectTransform>().position = position;
-            rewardAnim.transform.localScale = Vector3.one;
-            rewardAnim.GetComponent<RewardAddAnimation>().PlayGemsBalanceUpdateAnimation(ShopButtonGemsIcon.position, delay);
-        }
-
-        public void PlayAddGemsAnimationAtPositionFixed(Vector3 position, float delay)
-        {
-            Debug.Log("PlayAddGemsAnimationAtPosition: " + position);
-            GameObject rewardAnim = (GameObject)Instantiate(Resources.Load("RewardAnimation")) as GameObject;
-            rewardAnim.transform.SetParent(RuntimeEffectSpawnParentFixed);
             rewardAnim.GetComponent<RectTransform>().position = position;
             rewardAnim.transform.localScale = Vector3.one;
             rewardAnim.GetComponent<RewardAddAnimation>().PlayGemsBalanceUpdateAnimation(ShopButtonGemsIcon.position, delay);

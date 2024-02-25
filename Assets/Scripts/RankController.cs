@@ -38,6 +38,7 @@ public class RankController : MonoBehaviour
     {
         try
         {
+            root.Q("LoadingBody").style.visibility = Visibility.Visible;
             await LeaderBoardController.instance.UpdateScore();
             GenerateMyScore();
             GenerateTopRankList();
@@ -56,6 +57,7 @@ public class RankController : MonoBehaviour
 
     async void GenerateTopRankList()
     {
+        root.Q("LoadingBody").style.visibility = Visibility.Hidden;
         root.Q<ScrollView>().contentContainer.Clear();
         List<ScoreEntry> topScores = await LeaderBoardController.instance.GetTop100Rank();
         foreach (ScoreEntry score in topScores)

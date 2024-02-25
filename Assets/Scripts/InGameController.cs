@@ -299,29 +299,19 @@ public class InGameController : MonoBehaviour
 
     void PlayBtnPressFeedback(string status)
     {
+        UIFeedback.Instance.PlayHapticHeavy();
         switch (status)
         {
             case "Normal":
-                if (lockAllCalcInputs)
-                {
-                    UIFeedback.Instance.PlayHapticMedium();
-                }
-                else
-                {
-                    UIFeedback.Instance.PlayHapticHeavy();
-                }
                 AudioController.Instance.PlayClip(btnNormal);
                 break;
             case "Result":
-                UIFeedback.Instance.PlayHapticHeavy();
                 AudioController.Instance.PlayClip(btnResult);
                 break;
             case "Reset":
-                UIFeedback.Instance.PlayHapticHeavy();
                 AudioController.Instance.PlayClip(btnReset);
                 break;
             case "Error":
-                UIFeedback.Instance.PlayHapticHeavy();
                 AudioController.Instance.PlayClip(btnError);
                 break;
         }

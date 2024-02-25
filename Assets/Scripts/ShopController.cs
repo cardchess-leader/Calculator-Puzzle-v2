@@ -10,6 +10,9 @@ public class ShopController : MonoBehaviour
 {
     public static ShopController instance;
     public RectTransform btnPlaceHolder;
+    public AudioClip btnNormal;
+    public AudioClip btnResult;
+    public AudioClip btnReset;
     int calcIndex = -1;
     float displacement;
     VisualElement root;
@@ -63,12 +66,41 @@ public class ShopController : MonoBehaviour
                 UpdateScreen(true);
             }
         });
+
+        var calculators = root.Query<VisualElement>("Calculator").ToList();
+        foreach (var calculator in calculators)
+        {
+            calculator.RegisterCallback<ClickEvent>(HandleCalcButtonClick);
+        }
+    }
+    void HandleCalcButtonClick(ClickEvent evt)
+    {
+        VisualElement element = evt.target as VisualElement;
+        if (!(element is Button))
+        {
+            return;
+        }
+        string btnName = element.name;
+        if (btnName == "AC")
+        {
+            AudioController.Instance.PlayClip(btnReset);
+        }
+        else if (btnName == "Equal")
+        {
+            AudioController.Instance.PlayClip(btnResult);
+        }
+        else
+        {
+            AudioController.Instance.PlayClip(btnNormal);
+        }
+        UIFeedback.Instance.PlayHapticHeavy();
     }
     public void AttemptPurchaseCalculator()
     {
         CalculatorSO calc = GameManager.instance.calculatorList[calcIndex];
         if (CurrencyManager.Instance.DeductGems(calc.price))
         {
+            AudioController.Instance.PlayClip(AudioController.Instance.addGemsSound);
             UIController.Instance.PlayDeductGemsAnimation(new Vector3(btnPlaceHolder.position.x, btnPlaceHolder.position.y - displacement, 0), 0.1F);
             PopupManager.instance.ShowPopup("CalcPurchseSuccessful");
             GameManager.instance.EquipCalculator(calcIndex);

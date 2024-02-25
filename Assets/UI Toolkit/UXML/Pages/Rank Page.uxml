@@ -37,6 +37,9 @@
             </ui:VisualElement>
             <ui:VisualElement name="Body" style="flex-grow: 1;">
                 <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="ScrollView" style="flex-grow: 1; flex-shrink: 1;" />
+                <ui:VisualElement name="LoadingBody" style="flex-grow: 1; position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center;">
+                    <ui:Label tabindex="-1" text="Loading..." parse-escape-sequences="true" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 80px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="PlayerStat" style="flex-grow: 0; flex-shrink: 0;">
                 <ui:Instance template="Row" name="Row" />

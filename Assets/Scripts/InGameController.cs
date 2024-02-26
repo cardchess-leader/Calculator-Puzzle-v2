@@ -69,6 +69,7 @@ public class InGameController : MonoBehaviour
         InitializeCalc();
         ShowHintUI();
         UpdateCalcScreen();
+        ConfigTutorialImg();
         Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
     }
 
@@ -76,6 +77,16 @@ public class InGameController : MonoBehaviour
     {
         AdManager.OnRewardedAdRewardedEvent -= OnRewardedAdRewarded;
         gemIcon.transform.parent.gameObject.SetActive(false);
+    }
+
+    void ConfigTutorialImg()
+    {
+        float aspectRatio = (float)Screen.height / (float)Screen.width;
+        if (aspectRatio < 1.78f)
+        {
+            Texture2D image = Resources.Load<Texture2D>($"Tutorials/tutorial1920");
+            root.Q("Tutorial").Q("Image").style.backgroundImage = new StyleBackground(image);
+        }
     }
 
     void OnHintBtnClick()
@@ -204,6 +215,14 @@ public class InGameController : MonoBehaviour
         root.Q<VisualElement>("Calculator").RegisterCallback<ClickEvent>(HandleCalcBtnClick);
         root.Q<Button>("Hint").clicked += OnHintBtnClick;
         root.Q<Button>("Continue").clicked += OnContinueBtnClick;
+        root.Q<Button>("TutorialBtn").clicked += () =>
+        {
+            root.Q("Tutorial").RemoveFromClassList("hide");
+        };
+        root.Q("Tutorial").Q<Button>("Close").clicked += () =>
+        {
+            root.Q("Tutorial").AddToClassList("hide");
+        };
     }
 
     void OnContinueBtnClick()
@@ -489,7 +508,7 @@ public class InGameController : MonoBehaviour
 
     IEnumerator OnStageClearCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         root.Q("StageClear").RemoveFromClassList("hidden");
         if (GameManager.instance.isDaily)
         {

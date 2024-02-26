@@ -164,3 +164,19 @@
 #LevelTitle {
     color: rgb(64, 255, 0);
 }
+
+#Tutorial.hide {
+    scale: 0 0;
+}
+
+.info-btn {
+    flex-grow: 1;
+    position: absolute;
+    top: 50%;
+    right: -253px;
+    width: 75px;
+    height: 75px;
+    translate: -50% -50%;
+    background-image: url('project://database/Assets/Images/info.png?fileID=2800000&guid=64ee49672cac91447bb86d75fba06829&type=3#info');
+    -unity-background-image-tint-color: rgb(0, 255, 0);
+}

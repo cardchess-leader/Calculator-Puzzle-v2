@@ -62,7 +62,7 @@ public class LeaderBoardController : MonoBehaviour
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             authenticated = true;
             MainController.instance.EnableRankBtn();
-            await GetPlayerScore();
+            // await GetPlayerScore();
 
             // From hereafter, the notification part begins:
             // Verify the LastNotificationDate

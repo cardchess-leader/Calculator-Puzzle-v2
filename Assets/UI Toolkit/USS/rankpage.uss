@@ -45,28 +45,6 @@
     flex-shrink: 0;
 }
 
-#PlayerStat #Row #Rank {
-    border-left-color: rgb(0, 255, 53);
-    border-right-color: rgb(0, 255, 53);
-    border-top-color: rgb(0, 255, 53);
-    border-bottom-color: rgb(0, 255, 53);
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-}
-
-#PlayerStat #Row #Background {
-    border-left-color: rgb(0, 255, 53);
-    border-right-color: rgb(0, 255, 53);
-    border-top-color: rgb(0, 255, 53);
-    border-bottom-color: rgb(0, 255, 53);
-    border-top-width: 5px;
-    border-right-width: 5px;
-    border-bottom-width: 5px;
-    border-left-width: 5px;
-}
-
 .row-rank {
     flex-grow: 0;
     padding-top: 10px;
@@ -91,4 +69,26 @@
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     margin-left: 25px;
+}
+
+.player .row-rank {
+    border-left-color: rgb(0, 255, 53);
+    border-right-color: rgb(0, 255, 53);
+    border-top-color: rgb(0, 255, 53);
+    border-bottom-color: rgb(0, 255, 53);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+}
+
+.player .row-background {
+    border-left-color: rgb(0, 255, 53);
+    border-right-color: rgb(0, 255, 53);
+    border-top-color: rgb(0, 255, 53);
+    border-bottom-color: rgb(0, 255, 53);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
 }

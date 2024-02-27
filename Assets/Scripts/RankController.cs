@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Kamgam.UIToolkitScrollViewPro;
@@ -8,6 +9,7 @@ public class RankController : MonoBehaviour
 {
     public static RankController instance;
     VisualElement root;
+    ScoreEntry playerScore;
     void Awake()
     {
         instance = this;
@@ -40,7 +42,7 @@ public class RankController : MonoBehaviour
         {
             root.Q("LoadingBody").style.visibility = Visibility.Visible;
             await LeaderBoardController.instance.UpdateScore();
-            GenerateMyScore();
+            await GenerateMyScore();
             GenerateTopRankList();
         }
         catch (Exception e)
@@ -49,9 +51,9 @@ public class RankController : MonoBehaviour
         }
     }
 
-    async void GenerateMyScore()
+    async Task GenerateMyScore()
     {
-        ScoreEntry playerScore = await LeaderBoardController.instance.GetPlayerScore();
+        playerScore = await LeaderBoardController.instance.GetPlayerScore();
         GenerateRankRow(playerScore, root.Q("PlayerStat").Q("Row"));
     }
 
@@ -87,6 +89,10 @@ public class RankController : MonoBehaviour
         }
 
         row.Q("Score").Q<Label>().text = score.Score.ToString();
+        if (score.PlayerId == playerScore.PlayerId)
+        {
+            row.Q("Row").AddToClassList("player");
+        }
 
         return row;
     }

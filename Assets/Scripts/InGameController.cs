@@ -84,7 +84,7 @@ public class InGameController : MonoBehaviour
         float aspectRatio = (float)Screen.height / (float)Screen.width;
         if (aspectRatio < 1.78f)
         {
-            Texture2D image = Resources.Load<Texture2D>($"Tutorials/tutorial1920");
+            Texture2D image = Resources.Load<Texture2D>($"Tutorials/tutorial1920_new");
             root.Q("Tutorial").Q("Image").style.backgroundImage = new StyleBackground(image);
         }
     }
@@ -563,7 +563,7 @@ public class InGameController : MonoBehaviour
             case "Log":
                 return Mathf.Log(operand, 10);
             case "Factorial":
-                if (operand < 0 || operand != Mathf.Floor(operand))
+                if (operand < 0 || operand != Mathf.Floor(operand) || operand > 11)
                 {
                     throw new Exception();
                 }
@@ -574,7 +574,7 @@ public class InGameController : MonoBehaviour
                 }
                 return result;
             case "Inverse":
-                return 1 / operand;
+                return Helper.RoundEpsilonResult(1 / operand);
             case "Round":
                 return Mathf.Floor(operand + 0.5f);
         }

@@ -11,6 +11,8 @@ public class PopupManager : MonoBehaviour
     public GameObject ShowHintWithoutAd;
     public GameObject CalcPurchaseConfirm;
     public GameObject RankProfileSetup;
+    // public GameObject NoAdsPurchasePopup;
+    public GameObject PurchaseInfo;
     public Text CalcPurchaseConfirmContentText;
     void Awake()
     {
@@ -40,6 +42,12 @@ public class PopupManager : MonoBehaviour
             case "RankProfileSetup":
                 RankProfileSetup.Activate();
                 break;
+            case "PurchaseInfo":
+                PurchaseInfo.Activate();
+                break;
+                // case "NoAdsPurchasePopup":
+                //     NoAdsPurchasePopup.Activate();
+                //     break;
         }
     }
 

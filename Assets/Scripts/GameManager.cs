@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
         mainPage.SetActive(true);
         StartCoroutine(CheckForInternetConnection(1));
     }
+    IEnumerator ShowConsent()
+    {
+        // yield return new WaitForSeconds(0.75f);
+        yield return null;
+        UIController.Instance.ShowConsentDialogue();
+    }
     IEnumerator CheckForInternetConnection(float intervalInSeconds)
     {
         // Check the internet connectivity
@@ -174,6 +180,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetString("nickname", "Anonymous");
             PlayerPrefs.SetString("country", "UN");
             PlayerPrefs.SetInt("Initialize", 1);
+            StartCoroutine(ShowConsent());
         }
     }
 

@@ -176,7 +176,6 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Daily Hint", 0); // Today's Daily Hint
             PlayerPrefs.SetString("Daily Date", ""); // Last Daily Access Date
             PlayerPrefs.SetInt("Calc Basic", 2);
-            PlayerPrefs.SetInt("Calc Round", 1);
             PlayerPrefs.SetString("nickname", "Anonymous");
             PlayerPrefs.SetString("country", "UN");
             PlayerPrefs.SetInt("Initialize", 1);

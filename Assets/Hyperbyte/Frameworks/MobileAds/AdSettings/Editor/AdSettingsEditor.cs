@@ -247,24 +247,6 @@ namespace Hyperbyte
                     Selection.activeObject = unityAdsAsset;
                     break;
 
-                case AdNetworkSelection.GoogleMobileAds:
-                    GoogleMobileAdsSettings googleAdsAsset;
-                    assetName = "GoogleMobileAdsSettings.asset";
-
-                    if (System.IO.File.Exists(assetPath + "/" + assetName))
-                    {
-                        googleAdsAsset = (GoogleMobileAdsSettings)(Resources.Load("AdNetworkSettings/" + System.IO.Path.GetFileNameWithoutExtension(assetName)));
-                    }
-                    else
-                    {
-                        googleAdsAsset = ScriptableObject.CreateInstance<GoogleMobileAdsSettings>();
-                        AssetDatabase.CreateAsset(googleAdsAsset, assetPath + "/" + assetName);
-                        AssetDatabase.SaveAssets();
-                    }
-
-                    EditorUtility.FocusProjectWindow();
-                    Selection.activeObject = googleAdsAsset;
-                    break;
 
                 case AdNetworkSelection.IronSource:
                     IronSourceAdsSettings ironsourceAdsAsset;

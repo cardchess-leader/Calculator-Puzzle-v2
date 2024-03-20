@@ -106,11 +106,6 @@ namespace Hyperbyte.Ads
                         adComponentType = typeof(UnityAdsManager);
                         break;
 
-                    case AdNetworkSelection.GoogleMobileAds:
-                        adBehaviour = gameObject.AddComponent<GoogleMobileAdsManager>();
-                        adComponentType = typeof(GoogleMobileAdsManager);
-                        break;
-
                     case AdNetworkSelection.AppLovinMax:
                         adBehaviour = gameObject.AddComponent<AppLovinAdManager>();
                         adComponentType = typeof(AppLovinAdManager);

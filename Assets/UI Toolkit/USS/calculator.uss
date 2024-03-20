@@ -11,7 +11,7 @@
     -unity-background-scale-mode: scale-to-fit;
 }
 
-#Calculator Button:disabled {
+#Calculator #ButtonGroupRow Button:disabled {
     color: rgba(27, 27, 27, 0);
     opacity: 1;
 }

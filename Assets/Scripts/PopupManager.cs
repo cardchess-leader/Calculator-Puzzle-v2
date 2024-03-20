@@ -11,7 +11,7 @@ public class PopupManager : MonoBehaviour
     public GameObject ShowHintWithoutAd;
     public GameObject CalcPurchaseConfirm;
     public GameObject RankProfileSetup;
-    // public GameObject NoAdsPurchasePopup;
+    public GameObject NoAdsPurchasePopup;
     public GameObject PurchaseInfo;
     public Text CalcPurchaseConfirmContentText;
     void Awake()
@@ -43,11 +43,12 @@ public class PopupManager : MonoBehaviour
                 RankProfileSetup.Activate();
                 break;
             case "PurchaseInfo":
+                UIFeedback.Instance.PlayButtonPressEffect();
                 PurchaseInfo.Activate();
                 break;
-                // case "NoAdsPurchasePopup":
-                //     NoAdsPurchasePopup.Activate();
-                //     break;
+            case "NoAdsPurchasePopup":
+                NoAdsPurchasePopup.Activate();
+                break;
         }
     }
 

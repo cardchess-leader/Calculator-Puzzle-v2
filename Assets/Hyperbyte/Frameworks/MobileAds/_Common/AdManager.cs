@@ -58,7 +58,7 @@ namespace Hyperbyte.Ads
         /// </summary>
         private void Start()
         {
-            lastInterstitialShownTime = Time.time + 30; // Add 30 seconds delay in interstitial when game starts
+            lastInterstitialShownTime = Time.time + 90; // Add 30 seconds delay in interstitial when game starts
             adSettings = (AdSettings)Resources.Load("AdSettings");
             VerifyConsent();
         }

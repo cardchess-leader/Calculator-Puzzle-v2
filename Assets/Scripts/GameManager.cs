@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         activePage = mainPage;
         mainPage.SetActive(true);
-        StartCoroutine(CheckForInternetConnection(1));
+        // StartCoroutine(CheckForInternetConnection(1));
     }
     IEnumerator ShowConsent()
     {

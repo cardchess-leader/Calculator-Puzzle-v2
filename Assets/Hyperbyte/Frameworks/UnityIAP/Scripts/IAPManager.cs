@@ -294,7 +294,6 @@ namespace Hyperbyte
 		public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
 		{
 			// Handle the failed purchase here
-			Debug.LogError("Purchase failed: " + failureDescription);
 			if (OnPurchaseFailedEvent != null)
 			{
 				OnPurchaseFailedEvent.Invoke(failureDescription.message);

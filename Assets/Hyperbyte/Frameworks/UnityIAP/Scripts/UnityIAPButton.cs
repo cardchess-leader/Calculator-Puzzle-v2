@@ -79,11 +79,13 @@ namespace Hyperbyte
         /// </summary>
         void InitIAPProduct() 
         {
+            Debug.Log("InitIAPProduct Called");
             thisProduct = IAPManager.Instance.GetProductInfoById(inAppProductIndex);
             thisButton.onClick.AddListener(OnPurchaseButtonPressed);
 
             if(!hasInitialized) 
             {
+                Debug.Log("hasInitialized false");
                 if(IAPManager.Instance.hasUnityIAPSdkInitialised) 
                 {
                     #if HB_UNITYIAP
@@ -112,6 +114,7 @@ namespace Hyperbyte
         // Purchase button click listner.
         void OnPurchaseButtonPressed()
         {
+            Debug.Log("OnPurchaseButtonPressed");
             if (buttonType == 0)
             {
                 IAPManager.Instance.RestoreAllProducts();

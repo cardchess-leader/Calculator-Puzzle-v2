@@ -523,15 +523,22 @@ public class InGameController : MonoBehaviour
         int score = Mathf.Clamp(3 - GameManager.instance.GetHintLevel(), 1, 3);
         VisualElement scoreElement = Resources.Load<VisualTreeAsset>($"Score/Score {score}").CloneTree();
         root.Q("StageClear").Q("Section3").Add(scoreElement);
-        GameManager.instance.ClearCurrentLevel(score);
+        bool isFirstClear = GameManager.instance.ClearCurrentLevel(score);
         yield return new WaitForSeconds(0.3f);
-        gemIcon.transform.parent.gameObject.SetActive(true);
-        gemIcon.transform.parent.Find("Gem Gain Amount").GetComponent<UnityEngine.UI.Text>().text = GameManager.instance.isDaily ? "x150" : "x100";
+
+        if (isFirstClear)
+        {
+            gemIcon.transform.parent.gameObject.SetActive(true);
+            gemIcon.transform.parent.Find("Gem Gain Amount").GetComponent<UnityEngine.UI.Text>().text = GameManager.instance.isDaily ? "x150" : "x100";
+        }
         yield return new WaitForSeconds(0.2f);
         AudioController.Instance.PlayClip(stageClearClip[score - 1]);
         confetti.Play();
-        UIController.Instance.PlayAddGemsAnimationAtPosition(gemIcon.position, 0);
-        CurrencyManager.Instance.AddGems(GameManager.instance.isDaily ? 150 : 100);
+        if (isFirstClear)
+        {
+            UIController.Instance.PlayAddGemsAnimationAtPosition(gemIcon.position, 0);
+            CurrencyManager.Instance.AddGems(GameManager.instance.isDaily ? 150 : 100);
+        }
     }
 
     float GetBinaryOptrResult(float operand1, float operand2, string optr)

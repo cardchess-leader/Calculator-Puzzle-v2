@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ClearCurrentLevel(int score) // Level Clear Post Process
+    public bool ClearCurrentLevel(int score) // Level Clear Post Process
     {
         try
         {
@@ -247,21 +247,26 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt("Daily Hint", 0);
                 PlayerPrefs.SetInt("Daily Today Score", score);
                 PlayerPrefs.SetInt("Daily Score", PlayerPrefs.GetInt("Daily Score") + score);
+                return true;
             }
             else
             {
+                bool isFirstClear = false;
                 string scoreString = PlayerPrefs.GetString("Level Score");
                 string hintString = PlayerPrefs.GetString("Level Hint");
                 if (scoreString[targetLevel] == '0')
                 {
                     PlayerPrefs.SetString("Level Score", Helper.ReplaceCharAt(scoreString, score.ToString(), targetLevel));
+                    isFirstClear = true;
                 }
                 PlayerPrefs.SetString("Level Hint", Helper.ReplaceCharAt(hintString, "0", targetLevel));
+                return isFirstClear;
             }
         }
         catch (Exception e)
         {
             Debug.Log(e);
+            return false;
         }
     }
 

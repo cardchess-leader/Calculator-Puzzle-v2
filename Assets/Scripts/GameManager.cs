@@ -179,7 +179,21 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetString("nickname", "Anonymous");
             PlayerPrefs.SetString("country", "UN");
             PlayerPrefs.SetInt("Initialize", 1);
+            PlayerPrefs.SetInt("VersionCode", 1);
             StartCoroutine(ShowConsent());
+        }
+        if (PlayerPrefs.GetInt("VersionCode") < 1) // update for the version code 1
+        {
+            PlayerPrefs.SetInt("VersionCode", 1);
+            string levelScore = "";
+            string levelHint = "";
+            for (int i = 0; i < 10; i++) // for 10 additional questions
+            {
+                levelScore += "0";
+                levelHint += "0";
+            }
+            PlayerPrefs.SetString("Level Score", PlayerPrefs.GetString("Level Score") + levelScore);
+            PlayerPrefs.SetString("Level Hint", PlayerPrefs.GetString("Level Hint") + levelHint);
         }
     }
 
@@ -281,7 +295,7 @@ public class GameManager : MonoBehaviour
     }
     public bool IsLevelLocked(int level)
     {
-        if (!ProfileManager.Instance.IsAppAdFree() && questionList[level].difficulty != QuestionSO.Difficulty.Easy)
+        if (!ProfileManager.Instance.IsAppAdFree() && level >= 40)
         {
             return true;
         }

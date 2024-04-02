@@ -228,10 +228,10 @@ public class InGameController : MonoBehaviour
     void OnContinueBtnClick()
     {
         gemIcon.transform.parent.gameObject.SetActive(false);
-        if (!ProfileManager.Instance.IsAppAdFree() && AdManager.Instance.IsInterstitialAvailable())
-        {
-            AdManager.Instance.ShowInterstitial();
-        }
+        // if (!ProfileManager.Instance.IsAppAdFree() && AdManager.Instance.IsInterstitialAvailable())
+        // {
+        //     AdManager.Instance.ShowInterstitial();
+        // }
         if (GameManager.instance.isDaily)
         {
             GameManager.instance.SwitchPage("Main");

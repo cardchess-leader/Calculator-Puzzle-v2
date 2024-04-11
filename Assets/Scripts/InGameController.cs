@@ -75,8 +75,14 @@ public class InGameController : MonoBehaviour
 
     void OnDisable()
     {
-        AdManager.OnRewardedAdRewardedEvent -= OnRewardedAdRewarded;
-        gemIcon.transform.parent.gameObject.SetActive(false);
+        try
+        {
+            AdManager.OnRewardedAdRewardedEvent -= OnRewardedAdRewarded;
+            gemIcon.transform.parent.gameObject.SetActive(false);
+        }
+        catch (Exception e)
+        {
+        }
     }
 
     void ConfigTutorialImg()
@@ -627,6 +633,5 @@ public class InGameController : MonoBehaviour
         {
             root.Q<Label>("ScreenLabel").text = result;
         }
-        Debug.Log($"result is: {result}, tempResult is: {tempResult}, optr is: {optr}, isError is: {isError}");
     }
 }

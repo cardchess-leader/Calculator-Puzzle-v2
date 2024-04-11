@@ -79,11 +79,9 @@ public class Helper
         {
             root.RegisterCallback<ClickEvent>(evt =>
             {
-                Debug.Log("12345");
                 var targetElement = evt.target as VisualElement;
                 if (targetElement != null && targetElement.ClassListContains(className))
                 {
-                    Debug.Log("6789");
                     if (audioClip != null) // Correct null check
                     {
                         AudioController.Instance.PlayClip(audioClip);

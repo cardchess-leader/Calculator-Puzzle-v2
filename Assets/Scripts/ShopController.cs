@@ -27,6 +27,7 @@ public class ShopController : MonoBehaviour
         InitializeHandler();
         InitUI();
         Helper.SetHapticToBtn(root, "ui-btn", false, GameManager.instance.uiBtnClickSound);
+        UpdateScreen(true);
     }
     void Update()
     {

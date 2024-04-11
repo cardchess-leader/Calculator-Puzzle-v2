@@ -118,7 +118,6 @@ public class LeaderBoardController : MonoBehaviour
         try
         {
             var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync("Total_Score", new GetScoresOptions { Limit = 100, IncludeMetadata = true });
-            Debug.Log(JsonConvert.SerializeObject(scoresResponse));
             var scoresResponseObject = JsonConvert.DeserializeObject<ScoreResponse>(JsonConvert.SerializeObject(scoresResponse));
             // Corrected to deserialize Metadata properly and added ToList()
             var scoreEntries = scoresResponseObject.results.Select(scoreRawEntry => new ScoreEntry

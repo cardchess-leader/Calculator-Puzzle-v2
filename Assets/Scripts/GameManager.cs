@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetString("country", "UN");
             PlayerPrefs.SetInt("Initialize", 1);
             PlayerPrefs.SetInt("VersionCode", 1);
-            StartCoroutine(ShowConsent());
+            // StartCoroutine(ShowConsent());
         }
         if (PlayerPrefs.GetInt("VersionCode") < 1) // update for the version code 1
         {

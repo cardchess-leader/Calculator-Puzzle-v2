@@ -10,7 +10,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -30,7 +30,7 @@ namespace Hyperbyte
             }
         }
 
-		// Clear all child gameobjects of the given transform.
+        // Clear all child gameobjects of the given transform.
         public static void ClearAllChild(this Transform obj)
         {
             if (obj.childCount > 0)
@@ -42,7 +42,7 @@ namespace Hyperbyte
             }
         }
 
-		// Clear all child gameobjects of the given rect transform.
+        // Clear all child gameobjects of the given rect transform.
         public static void ClearAllChild(this RectTransform obj)
         {
             if (obj.childCount > 0)
@@ -57,11 +57,19 @@ namespace Hyperbyte
         // Activates the given gameobject with animation. used for only popups of the game.
         public static void Activate(this GameObject target, bool addToStack = true)
         {
-            target.gameObject.SetActive(true);
-            target.transform.SetAsLastSibling();
+            try
+            {
+                target.gameObject.SetActive(true);
+                target.transform.SetAsLastSibling();
 
-            if(addToStack) {
-                UIController.Instance.Push(target.name);
+                if (addToStack)
+                {
+                    UIController.Instance.Push(target.name);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
             }
         }
 
@@ -81,9 +89,9 @@ namespace Hyperbyte
             }
         }
 
-		/// <summary>
-		/// Disable given gameobject and removes it from stack added to any.
-		/// </summary>
+        /// <summary>
+        /// Disable given gameobject and removes it from stack added to any.
+        /// </summary>
         static IEnumerator DisableWindow(GameObject target)
         {
             yield return new WaitForSeconds(0.3F);

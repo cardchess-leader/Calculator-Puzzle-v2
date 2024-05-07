@@ -353,7 +353,17 @@ public class InGameController : MonoBehaviour
         VisualElement element = Resources.Load<VisualTreeAsset>($"Log Symbol/{btnName}").CloneTree();
         ScrollViewPro inputLogContainer = root.Q<VisualElement>("InputLog").Q<ScrollViewPro>("LogContainer");
         inputLogContainer.Add(element);
-        inputLogContainer.schedule.Execute(() => inputLogContainer.ScrollTo(element)).StartingIn(40);
+        inputLogContainer.schedule.Execute(() =>
+        {
+            try
+            {
+                inputLogContainer.ScrollTo(element);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+        }).StartingIn(40);
     }
 
     void EvaluateExpression(string symbol)

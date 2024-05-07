@@ -20,7 +20,13 @@ public class GameManager : MonoBehaviour
     GameObject activePage;
     void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject); // Destroys the new object if an instance already exists
+            return;
+        }
         instance = this;
+        DontDestroyOnLoad(gameObject); // Optional: Keep the manager across scenes
         InitPlayerPrefData();
     }
     void Start()
@@ -37,19 +43,21 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator CheckForInternetConnection(float intervalInSeconds)
     {
-        // Check the internet connectivity
-        switch (Application.internetReachability)
+        while (true)
         {
-            case NetworkReachability.NotReachable:
-                connectionLostOverlay.SetActive(true);
-                break;
-            case NetworkReachability.ReachableViaCarrierDataNetwork:
-            case NetworkReachability.ReachableViaLocalAreaNetwork:
-                connectionLostOverlay.SetActive(false);
-                break;
+            // Check the internet connectivity
+            switch (Application.internetReachability)
+            {
+                case NetworkReachability.NotReachable:
+                    connectionLostOverlay.SetActive(true);
+                    break;
+                case NetworkReachability.ReachableViaCarrierDataNetwork:
+                case NetworkReachability.ReachableViaLocalAreaNetwork:
+                    connectionLostOverlay.SetActive(false);
+                    break;
+            }
+            yield return new WaitForSeconds(intervalInSeconds);
         }
-        yield return new WaitForSeconds(intervalInSeconds);
-        StartCoroutine(CheckForInternetConnection(intervalInSeconds));
     }
     public void EquipCalculator(int calcIndex)
     {
@@ -79,6 +87,7 @@ public class GameManager : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.LogError("Error getting score at difficulty: " + e.ToString());
             return 0;
         }
     }

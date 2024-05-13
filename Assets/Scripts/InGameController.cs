@@ -1,7 +1,8 @@
 using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Kamgam.UIToolkitScrollViewPro;
@@ -176,7 +177,7 @@ public class InGameController : MonoBehaviour
         {
             root.Q<Label>("LevelTitle").text = $"Level {GameManager.instance.targetLevel + 1}";
         }
-        root.Q<VisualElement>("Title").Q<Label>().text = $"Make {question.goalNum}";
+        root.Q<VisualElement>("Title").Q<Label>().text = $"Make {question.goalNum.ToString(CultureInfo.InvariantCulture)}";
         if (GameManager.instance.isDaily)
         {
             root.Q("GamePage").AddToClassList("dailyLevel");
@@ -270,7 +271,7 @@ public class InGameController : MonoBehaviour
 
     void InitializeCalc()
     {
-        result = question.initialNum.ToString();
+        result = question.initialNum.ToString(CultureInfo.InvariantCulture);
         tempResult = "";
         optr = "";
         isError = false;
@@ -376,7 +377,7 @@ public class InGameController : MonoBehaviour
                 {
                     if (tempResult != "")
                     {
-                        result = GetBinaryOptrResult(float.Parse(result), float.Parse(tempResult), optr).ToString();
+                        result = GetBinaryOptrResult(Helper.ParseInvariant(result), Helper.ParseInvariant(tempResult), optr).ToString(CultureInfo.InvariantCulture);
                         tempResult = "";
                         optr = "";
                     }
@@ -394,13 +395,13 @@ public class InGameController : MonoBehaviour
                     {
                         if (IsBinaryOptr(symbol))
                         {
-                            result = GetBinaryOptrResult(float.Parse(result), float.Parse(tempResult), optr).ToString();
+                            result = GetBinaryOptrResult(Helper.ParseInvariant(result), Helper.ParseInvariant(tempResult), optr).ToString(CultureInfo.InvariantCulture);
                             tempResult = "";
                             optr = symbol;
                         }
                         else
                         {
-                            tempResult = GetUnaryOptrResult(float.Parse(tempResult), symbol).ToString();
+                            tempResult = GetUnaryOptrResult(Helper.ParseInvariant(tempResult), symbol).ToString(CultureInfo.InvariantCulture);
                         }
                     }
                     else
@@ -416,7 +417,7 @@ public class InGameController : MonoBehaviour
                     }
                     else
                     {
-                        result = GetUnaryOptrResult(float.Parse(result), symbol).ToString();
+                        result = GetUnaryOptrResult(Helper.ParseInvariant(result), symbol).ToString(CultureInfo.InvariantCulture);
                     }
                 }
             }
@@ -428,9 +429,9 @@ public class InGameController : MonoBehaviour
                     {
                         result = result + symbol;
                     }
-                    else if (float.TryParse(result + symbol, out float newValue))
+                    else if (Helper.TryParseInvariant(result + symbol, out float newValue))
                     {
-                        result = symbol == "." ? result + symbol : newValue.ToString();
+                        result = symbol == "." ? result + symbol : newValue.ToString(CultureInfo.InvariantCulture);
                     }
                     else
                     {
@@ -443,9 +444,9 @@ public class InGameController : MonoBehaviour
                     {
                         tempResult = tempResult + symbol;
                     }
-                    else if (float.TryParse(tempResult + symbol, out float newValue))
+                    else if (Helper.TryParseInvariant(tempResult + symbol, out float newValue))
                     {
-                        tempResult = symbol == "." ? tempResult + symbol : newValue.ToString();
+                        tempResult = symbol == "." ? tempResult + symbol : newValue.ToString(CultureInfo.InvariantCulture);
                     }
                     else
                     {
@@ -515,7 +516,7 @@ public class InGameController : MonoBehaviour
 
     void CompareResultWithAnswer()
     {
-        if (question.goalNum.ToString() == result)
+        if (question.goalNum.ToString(CultureInfo.InvariantCulture) == result)
         {
             lockAllCalcInputs = true;
             StartCoroutine(OnStageClearCoroutine());

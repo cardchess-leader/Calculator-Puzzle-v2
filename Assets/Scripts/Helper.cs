@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -329,5 +330,15 @@ public class Helper
             case "ZW": return "Zimbabwe";
             default: return "Not Found";
         }
+    }
+
+    public static bool TryParseInvariant(string value, out float result)
+    {
+        return float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out result);
+    }
+
+    public static float ParseInvariant(string value)
+    {
+        return float.Parse(value, CultureInfo.InvariantCulture);
     }
 }

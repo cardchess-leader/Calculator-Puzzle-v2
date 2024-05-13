@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
@@ -123,7 +124,7 @@ public class LeaderBoardController : MonoBehaviour
             var scoreEntries = scoresResponseObject.results.Select(scoreRawEntry => new ScoreEntry
             {
                 PlayerId = scoreRawEntry.PlayerId,
-                Score = (int)float.Parse(scoreRawEntry.Score),
+                Score = (int)float.Parse(scoreRawEntry.Score, CultureInfo.InvariantCulture),
                 Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
                 Metadata = JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata)
             }).ToList();
@@ -146,7 +147,7 @@ public class LeaderBoardController : MonoBehaviour
             return new ScoreEntry
             {
                 PlayerId = scoreRawEntry.PlayerId,
-                Score = (int)float.Parse(scoreRawEntry.Score),
+                Score = (int)float.Parse(scoreRawEntry.Score, CultureInfo.InvariantCulture),
                 Rank = (int)float.Parse(scoreRawEntry.Rank) + 1,
                 Metadata = JsonConvert.DeserializeObject<Dictionary<string, string>>(scoreRawEntry.Metadata)
             };

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -88,7 +89,7 @@ public class RankController : MonoBehaviour
             row.Q("Country").Q("Flag").style.backgroundImage = new StyleBackground(flagTexture);
         }
 
-        row.Q("Score").Q<Label>().text = score.Score.ToString();
+        row.Q("Score").Q<Label>().text = score.Score.ToString(CultureInfo.InvariantCulture);
         if (score.PlayerId == playerScore.PlayerId)
         {
             row.Q("Row").AddToClassList("player");

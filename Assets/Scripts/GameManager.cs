@@ -309,7 +309,7 @@ public class GameManager : MonoBehaviour
     }
     public bool IsLevelLocked(int level)
     {
-        if (!ProfileManager.Instance.IsAppAdFree() && level >= 40)
+        if (!ProfileManager.Instance.IsAppAdFree() && level >= 100)
         {
             return true;
         }

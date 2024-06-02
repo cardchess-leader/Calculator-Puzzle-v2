@@ -131,7 +131,7 @@ namespace Hyperbyte
         /// <summary>
         /// Adds currecy balance from the rewarded ad.
         /// </summary>
-        void OnRewardedAdRewarded(string tag)
+        public void OnRewardedAdRewarded(string tag)
         {
             switch (tag)
             {

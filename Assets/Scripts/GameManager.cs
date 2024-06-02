@@ -370,4 +370,14 @@ public class GameManager : MonoBehaviour
     {
         return 3 * questionList.Count(question => question.difficulty == difficulty);
     }
+    public void UnlockAllCalculators()
+    {
+        for (int i = 0; i < calculatorList.Count; i++)
+        {
+            if (PlayerPrefs.GetInt($"Calc {calculatorList[i].title}") == 0)
+            {
+                PlayerPrefs.SetInt($"Calc {calculatorList[i].title}", 1);
+            }
+        }
+    }
 }

@@ -87,7 +87,14 @@ namespace Hyperbyte
 			{
 				InputManager.Instance.DisableTouchForDelay(1F);
 				UIFeedback.Instance.PlayButtonPressEffect();
-				AdManager.Instance.ShowRewardedWithTag("FreeGems");
+				if (ProfileManager.Instance.IsAppAdFree())
+				{
+					CurrencyManager.Instance.OnRewardedAdRewarded("FreeGems");
+				}
+				else
+				{
+					AdManager.Instance.ShowRewardedWithTag("FreeGems");
+				}
 			}
 		}
 

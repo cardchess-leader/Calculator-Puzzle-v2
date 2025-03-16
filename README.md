@@ -69,7 +69,7 @@ Calculator Puzzle은 **전자계산기의 동작 원리에서 영감을 받아 �
 
 ## 📥 다운로드
 
-🔗 [Google Play](#) | 🔗 [App Store](#)
+🔗 [Google Play](https://play.google.com/store/apps/details?id=com.boardcollie.calculatorpuzzle) | 🔗 [App Store](https://apps.apple.com/kr/app/the-calculator-puzzle/id6479728187)
 
 ## 📜 라이선스
 

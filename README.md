@@ -1,11 +1,10 @@
 # Calculator Puzzle
 
-![Placeholder Image](https://via.placeholder.com/800x400)
+<img src="https://github.com/user-attachments/assets/fd9abdd3-125d-4986-9fa2-53b7686f6e65" width="200">
 
 ## 🎮 게임 소개
 
-[Gameplay Video 1](https://www.youtube.com/watch?v=0zHOF5BWaZY&ab_channel=BoardCollie)  
-[Gameplay Video 2](https://www.youtube.com/watch?v=uP5cr3a5k18&ab_channel=BoardCollie)
+[![BoardCollie Video](https://img.youtube.com/vi/0zHOF5BWaZY/0.jpg)](https://www.youtube.com/watch?v=0zHOF5BWaZY)
 
 Calculator Puzzle은 **전자계산기의 동작 원리에서 영감을 받아 제작된 캐주얼 모바일 퍼즐 게임**입니다.  
 0~9까지의 숫자와 연산 기호 버튼을 조합하여 **제한된 입력 횟수로 목표 숫자를 만들어야 합니다.**
@@ -13,7 +12,11 @@ Calculator Puzzle은 **전자계산기의 동작 원리에서 영감을 받아 �
 예를 들어, **두 번의 버튼 입력만으로 64를 81로 만들거나, 숫자 5와 연산 버튼만으로 5를 12로 만드는 문제**를 풀어야 합니다.  
 단순한 덧셈, 뺄셈이 아니라 창의적인 사고를 요구하는 재미있는 퍼즐 게임입니다!
 
-![Placeholder Image](https://via.placeholder.com/800x400)
+<img src="https://github.com/user-attachments/assets/34015b8b-5411-4e2c-8f05-dcb039f6e0bb" width="200">
+
+<img src="https://github.com/user-attachments/assets/1a98c265-80b6-43af-8dd1-dbfc5b773c9a" width="200">
+
+<img src="https://github.com/user-attachments/assets/e973f7de-655a-466b-90b3-1bd8311f11ac" width="200">
 
 ## 🧩 게임 특징
 
@@ -22,7 +25,13 @@ Calculator Puzzle은 **전자계산기의 동작 원리에서 영감을 받아 �
 - **리더보드 지원**: 글로벌 순위 경쟁 가능
 - **보석 수집 시스템**: 퍼즐을 풀면 보석 획득 → 계산기 스킨 구매 가능
 
-![Placeholder Image](https://via.placeholder.com/800x400)
+
+<img src="https://github.com/user-attachments/assets/d0baf064-df96-40de-b34b-438c9ccdf8d2" width="200">
+
+<img src="https://github.com/user-attachments/assets/187859a4-e1c3-4a02-94b4-d77d9db1bded" width="200">
+
+<img src="https://github.com/user-attachments/assets/c3dd6890-29e3-4067-a22c-d3603f4a8a30" width="200">
+
 
 ## 📅 개발 및 출시 일정
 
@@ -46,7 +55,11 @@ Calculator Puzzle은 **전자계산기의 동작 원리에서 영감을 받아 �
 - **순위, 총 점수, 닉네임 및 국가 정보 제공**
 - **실시간 업데이트** 지원
 
-![Placeholder Image](https://via.placeholder.com/800x400)
+<img src="https://github.com/user-attachments/assets/93ce8c61-1012-47fe-bdbe-9b2212e92d25" width="200">
+
+<img src="https://github.com/user-attachments/assets/b27dce86-9c2e-4030-b3c0-21391316e3cc" width="200">
+
+<img src="https://github.com/user-attachments/assets/993e415c-031e-417d-828e-343accf6ea1c" width="200">
 
 ## 💰 수익화 전략
 
